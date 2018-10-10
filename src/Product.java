@@ -33,9 +33,28 @@ public class Product {
 	}
 	
 	void information() {
-		System.out.println("Nombre: " + this.getName() + " ID: " + this.getID());
-		System.out.println("Unidades disponibles: " + this.getStock());
-		System.out.println("Precio: " + this.getPrice());
+		System.out.println("Name: " + this.getName());
+		System.out.println("ID: " + this.getID());
+		System.out.println("Stock: " + this.getStock());
+		System.out.println("Prize: " + this.getPrice());
+	}
+	
+	static void removeProduct(int id) {
+		boolean find = false;
+		for(int i = 0; i < Category.categorylist.size(); i++) {
+			for(int j = 0; j < Category.categorylist.get(i).productlist.size(); j++){
+				if(Category.categorylist.get(i).productlist.get(j).getID() == id) {
+					find = true;
+					Category.categorylist.get(i).productlist.remove(j);
+					break;
+				}
+			}
+		}
+		if(find) {
+			System.out.println("The product has been removed.");
+		} else {
+			System.out.println("Error, product not found.");
+		}
 	}
 	
 	String getName() {

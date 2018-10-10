@@ -66,4 +66,22 @@ public class Category {
 		}
 		return searched;
 	}
+	static void removeCategory(int id) {
+		boolean find = false;
+		for(int i = 0; i < categorylist.size(); i++) {
+			if(categorylist.get(i).getId() == id) {
+				find = true;
+				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
+					categorylist.get(i).productlist.remove(j);
+				}
+				categorylist.remove(i);
+				break;
+			}
+		}
+		if(find) {
+			System.out.println("The category has been removed.");
+		} else {
+			System.out.println("Error, category not found.");
+		}
+	}
 }

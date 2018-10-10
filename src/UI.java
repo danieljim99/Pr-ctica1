@@ -9,10 +9,10 @@ public class UI {
 		Category cat = new Category();
 		Product pro = new Product();
 		do {
-			System.out.println("\n1 - Show all categories");
-			System.out.println("2 - Show products");
-			System.out.println("3 - Show product information");
-			System.out.println("4 - Exit");
+			System.out.println("\n1 - Show all categories.");
+			System.out.println("2 - Show products by category.");
+			System.out.println("3 - Search product.");
+			System.out.println("4 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextInt();
 			switch(op) {
@@ -47,5 +47,16 @@ public class UI {
 			}
 			
 		} while(op != 4);
+	}
+	static void adminMenu() {
+		int op = 0;
+		do {
+			System.out.println("1 - Show storage tree.");
+			System.out.println("2 - Create category.");
+			System.out.println("3 - Create product.");
+			System.out.println("4 - Remove category.");
+			System.out.println("5 - Remove product.");
+			System.out.println("6 - Exit.");
+		}while(op != 6);
 	}
 }
