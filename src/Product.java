@@ -7,7 +7,11 @@ public class Product {
 	static int cont_products = 0;
 	
 	Product(){
-		
+		name = null;
+		id = -1;
+		category_id = -1;
+		stock = -1;
+		price = -1;
 	}
 	
 	Product(String name, int category_id, int stock, float price){

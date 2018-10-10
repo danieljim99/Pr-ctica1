@@ -30,7 +30,7 @@ public class Category {
 	}
 	
 	static void printCategories() {
-		System.out.print("Categories list: " + categorylist.get(0).getName() + "(ID:0)");
+		System.out.print("Categories: " + categorylist.get(0).getName() + "(ID:0)");
 		for(int i = 1; i < categorylist.size(); i++) {
 			System.out.print(", " + categorylist.get(i).getName() + "(ID:" + i + ")");
 		}
@@ -38,7 +38,7 @@ public class Category {
 	}
 	
 	void printProducts() {
-		System.out.print("Product list of " + this.getName() + ": " + productlist.get(0).getName());
+		System.out.print("Products of " + this.getName() + ": " + productlist.get(0).getName());
 		for(int i = 1; i < productlist.size(); i++) {
 			System.out.print(", " + productlist.get(i).getName());
 		}
@@ -57,7 +57,12 @@ public class Category {
 	static Product searchProduct(String name) {
 		Product searched = new Product();
 		for(int i = 0; i < categorylist.size(); i++) {
-			
+			for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
+				if(name.equals(categorylist.get(i).productlist.get(j).getName())){
+					searched = categorylist.get(i).productlist.get(j);
+					break;
+				}
+			}
 		}
 		return searched;
 	}

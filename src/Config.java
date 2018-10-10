@@ -32,11 +32,10 @@ public class Config {
 	static void save_log(String username, String email, String password) {
 		try (FileWriter write = new FileWriter("config")){
 			Properties properties = new Properties();
-			//properties.load(write);
 			properties.setProperty("username" + User.users.size(), username);
 			properties.setProperty("email" + User.users.size(), email);
 			properties.setProperty("password" + User.users.size(), password);
-			properties.store(write, "Lista de inicio de sesion");
+			properties.store(write, "Login list");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

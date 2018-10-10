@@ -5,8 +5,6 @@ public class Main {
 		Product HarryPotter = new Product("Harry Potter", 1, 1, 20);
 		Product SherlockHolmes = new Product("Sherlock Holmes", 1, 1, 20);
 		Product hola = new Product("Hola", 2, 1, 20);
-		Category.printCategories();
-		books.printProducts();
-		kk.printProducts();
+		UI.userMenu();
 	}
 }
