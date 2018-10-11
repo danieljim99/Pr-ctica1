@@ -28,7 +28,7 @@ public class Product {
 			}
 		}
 		if(!encontrado) {
-			Category category = new Category("Undefindedcategory(" + category_id + ")");
+			Category category = new Category("Undefinedcategory(" + category_id + ")");
 			Category.searchCategory("Undefindedcategory(" + category_id + ")").addProduct(this);
 		}
 	}

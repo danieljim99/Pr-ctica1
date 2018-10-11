@@ -21,6 +21,10 @@ public class Category {
 		return name;
 	}
 	
+	void setName(String name) {
+		this.name = name;
+	}
+	
 	int getId() {
 		return id;
 	}
@@ -95,6 +99,18 @@ public class Category {
 				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
 					System.out.println("\t" + categorylist.get(i).productlist.get(j).getName() + "(ID:" + categorylist.get(i).productlist.get(j).getId() + ")");
 				}
+			}
+		}
+	}
+	static void renameCategory(String name, String newname) {
+		if(searchCategory(newname).getName() != null) {
+			System.out.println("There is already a category with the new name.");
+		} else {
+			if(searchCategory(name).getName() == null) {
+				System.out.println("Error, category not found.");
+			} else {
+				searchCategory(name).setName(newname);
+				System.out.println("The name has been changed successfully.");
 			}
 		}
 	}

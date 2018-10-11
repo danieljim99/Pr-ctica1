@@ -52,9 +52,10 @@ public class UI {
 		int op = 0;
 		Scanner kop = new Scanner(System.in);
 		Scanner kname = new Scanner(System.in);
+		Scanner kname2 = new Scanner(System.in);
 		Scanner kid = new Scanner(System.in);
-		Scanner kps = new Scanner(System.in);
-		Scanner kpp = new Scanner(System.in);
+		Scanner kstock = new Scanner(System.in);
+		Scanner kprize = new Scanner(System.in);
 		do {
 			System.out.println("\n1 - Show storage tree.");
 			System.out.println("2 - Create category.");
@@ -87,9 +88,9 @@ public class UI {
 					System.out.print("Introduce the category ID: ");
 					int id = kid.nextInt();
 					System.out.print("Introduce the number of products you are going to create: ");
-					int pst = kps.nextInt();
+					int pst = kstock.nextInt();
 					System.out.print("Introduce the price of this product: ");
-					float ppr = kpp.nextFloat();
+					float ppr = kprize.nextFloat();
 					Product newproduct = new Product(name, id, pst, ppr);
 				}
 				break;
@@ -106,6 +107,11 @@ public class UI {
 				Product.removeProduct(id);
 				break;
 			case 6:
+				System.out.print("Introduce the name of the category you want to rename: ");
+				name = kname.nextLine();
+				System.out.print("Introduce the new name: ");
+				String newname = kname2.nextLine();
+				Category.renameCategory(name, newname);
 				break;
 			case 7:
 				System.out.println("Shutting down the application.");
