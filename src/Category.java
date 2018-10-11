@@ -66,6 +66,7 @@ public class Category {
 		}
 		return searched;
 	}
+	
 	static void removeCategory(int id) {
 		boolean find = false;
 		for(int i = 0; i < categorylist.size(); i++) {
@@ -82,6 +83,19 @@ public class Category {
 			System.out.println("The category has been removed.");
 		} else {
 			System.out.println("Error, category not found.");
+		}
+	}
+	static void storageTree() {
+		if(categorylist.size() == 0) {
+			System.out.println("There are no categories to show");
+		} else {
+			System.out.println("Showing the storage tree:\n");
+			for(int i = 0; i < categorylist.size(); i++) {
+				System.out.println(categorylist.get(i).getName() + "(ID:" + categorylist.get(i).getId() + "):");
+				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
+					System.out.println("\t" + categorylist.get(i).productlist.get(j).getName() + "(ID:" + categorylist.get(i).productlist.get(j).getId() + ")");
+				}
+			}
 		}
 	}
 }

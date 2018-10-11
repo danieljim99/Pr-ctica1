@@ -34,7 +34,7 @@ public class Product {
 	
 	void information() {
 		System.out.println("Name: " + this.getName());
-		System.out.println("ID: " + this.getID());
+		System.out.println("ID: " + this.getId());
 		System.out.println("Stock: " + this.getStock());
 		System.out.println("Prize: " + this.getPrice());
 	}
@@ -43,7 +43,7 @@ public class Product {
 		boolean find = false;
 		for(int i = 0; i < Category.categorylist.size(); i++) {
 			for(int j = 0; j < Category.categorylist.get(i).productlist.size(); j++){
-				if(Category.categorylist.get(i).productlist.get(j).getID() == id) {
+				if(Category.categorylist.get(i).productlist.get(j).getId() == id) {
 					find = true;
 					Category.categorylist.get(i).productlist.remove(j);
 					break;
@@ -61,11 +61,11 @@ public class Product {
 		return name;
 	}
 	
-	int getID() {
+	int getId() {
 		return id;
 	}
 	
-	int getCategory_id() {
+	int getCategoryId() {
 		return category_id;
 	}
 	

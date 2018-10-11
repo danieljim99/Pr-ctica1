@@ -50,13 +50,42 @@ public class UI {
 	}
 	static void adminMenu() {
 		int op = 0;
+		Scanner kop = new Scanner(System.in);
+		Scanner kcn = new Scanner(System.in);
 		do {
-			System.out.println("1 - Show storage tree.");
+			System.out.println("\n1 - Show storage tree.");
 			System.out.println("2 - Create category.");
 			System.out.println("3 - Create product.");
 			System.out.println("4 - Remove category.");
 			System.out.println("5 - Remove product.");
 			System.out.println("6 - Exit.");
-		}while(op != 6);
+			System.out.println("_> ");
+			op = kop.nextInt();
+			switch(op) {
+			case 1:
+				Category.storageTree();
+				break;
+			case 2:
+				System.out.print("Introduce the category name: ");
+				String name = kcn.nextLine();
+				Category cat  = Category.searchCategory(name);
+				if(cat.getName() == name) {
+					System.out.println("There is already a category with that name.");
+				} else {
+					Category newcategory = new Category(name);
+				}
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			default:
+				
+			}
+			}while(op != 6);
 	}
 }
