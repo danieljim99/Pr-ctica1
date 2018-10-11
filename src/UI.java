@@ -51,15 +51,19 @@ public class UI {
 	static void adminMenu() {
 		int op = 0;
 		Scanner kop = new Scanner(System.in);
-		Scanner kcn = new Scanner(System.in);
+		Scanner kname = new Scanner(System.in);
+		Scanner kid = new Scanner(System.in);
+		Scanner kps = new Scanner(System.in);
+		Scanner kpp = new Scanner(System.in);
 		do {
 			System.out.println("\n1 - Show storage tree.");
 			System.out.println("2 - Create category.");
 			System.out.println("3 - Create product.");
 			System.out.println("4 - Remove category.");
 			System.out.println("5 - Remove product.");
-			System.out.println("6 - Exit.");
-			System.out.println("_> ");
+			System.out.println("6 - Rename category.");
+			System.out.println("7 - Exit.");
+			System.out.print("_> ");
 			op = kop.nextInt();
 			switch(op) {
 			case 1:
@@ -67,25 +71,48 @@ public class UI {
 				break;
 			case 2:
 				System.out.print("Introduce the category name: ");
-				String name = kcn.nextLine();
-				Category cat  = Category.searchCategory(name);
-				if(cat.getName() == name) {
+				String name = kname.nextLine();
+				if(Category.searchCategory(name).getName() != null) {
 					System.out.println("There is already a category with that name.");
 				} else {
 					Category newcategory = new Category(name);
 				}
 				break;
 			case 3:
+				System.out.print("Introduce the product name: ");
+				name = kname.nextLine();
+				if(Category.searchProduct(name).getName() != null) {
+					System.out.println("There is already a product with that name.");
+				} else {
+					System.out.print("Introduce the category ID: ");
+					int id = kid.nextInt();
+					System.out.print("Introduce the number of products you are going to create: ");
+					int pst = kps.nextInt();
+					System.out.print("Introduce the price of this product: ");
+					float ppr = kpp.nextFloat();
+					Product newproduct = new Product(name, id, pst, ppr);
+				}
 				break;
 			case 4:
+				System.out.println("ATTENTION!  This option will remove a category and all its products, this cannot be undone.");
+				System.out.print("Introduce the category id you want to remove: ");
+				int id = kid.nextInt();
+				Category.removeCategory(id);
 				break;
 			case 5:
+				System.out.println("ATTENTION! this option will remove a product, this cannot be undone.");
+				System.out.print("Introduce the product id you want to remove: ");
+				id = kid.nextInt();
+				Product.removeProduct(id);
 				break;
 			case 6:
+				break;
+			case 7:
+				System.out.println("Shutting down the application.");
 				break;
 			default:
 				
 			}
-			}while(op != 6);
+			}while(op != 7);
 	}
 }
