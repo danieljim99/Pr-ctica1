@@ -58,3 +58,8 @@ config
 .classpath
 .project
 out.properties
+CategoryList.txt
+ProductList.txt
+src/Main.class
+src/UI.class
+UserList.txt

@@ -28,9 +28,10 @@ public class Product {
 			}
 		}
 		if(!encontrado) {
-			Category category = new Category("Undefinedcategory(" + category_id + ")");
+			Category category = new Category("Undefinedcategory(" + category_id + ")", true);
 			Category.searchCategory("Undefinedcategory(" + category_id + ")").addProduct(this);
 		}
+		BackUp.updateProductList();
 	}
 	
 	void information() {
@@ -53,6 +54,7 @@ public class Product {
 		}
 		if(find) {
 			System.out.println("The product has been removed.");
+			BackUp.updateProductList();
 		} else {
 			System.out.println("Error, product not found.");
 		}

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class UI {
+public class Ui {
 	static void userMenu() {
 		Scanner kop = new Scanner(System.in);
 		Scanner kcat = new Scanner(System.in);
@@ -76,7 +76,7 @@ public class UI {
 				if(Category.searchCategory(name).getName() != null) {
 					System.out.println("There is already a category with that name.");
 				} else {
-					Category newcategory = new Category(name);
+					Category newcategory = new Category(name, true);
 				}
 				break;
 			case 3:

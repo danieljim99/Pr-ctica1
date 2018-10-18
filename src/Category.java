@@ -11,10 +11,13 @@ public class Category {
 		id = -1;
 	}
 	
-	Category(String name){
+	Category(String name, boolean update){
 		this.name = name;
 		this.id = categorylist.size() + 1;
 		categorylist.add(this);
+		if(update) {
+			BackUp.updateCategoryList();
+		}
 	}
 	
 	String getName() {
@@ -85,6 +88,7 @@ public class Category {
 		}
 		if(find) {
 			System.out.println("The category has been removed.");
+			BackUp.updateCategoryList();
 		} else {
 			System.out.println("Error, category not found.");
 		}
@@ -111,6 +115,7 @@ public class Category {
 			} else {
 				searchCategory(name).setName(newname);
 				System.out.println("The name has been changed successfully.");
+				BackUp.updateCategoryList();
 			}
 		}
 	}
