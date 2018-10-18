@@ -34,6 +34,7 @@ public class Category {
 	
 	void addProduct(Product product) {
 		productlist.add(product);
+		BackUp.updateProductList();
 	}
 	
 	static void printCategories() {
@@ -89,6 +90,7 @@ public class Category {
 		if(find) {
 			System.out.println("The category has been removed.");
 			BackUp.updateCategoryList();
+			BackUp.updateProductList();
 		} else {
 			System.out.println("Error, category not found.");
 		}

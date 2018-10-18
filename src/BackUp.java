@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class BackUp {
 	static void updateUserList() {
 		try(FileWriter write = new FileWriter("UserList.txt")) {
-			for(int i = 0; i < User.users.size(); i++) {
-				write.write(User.users.get(i).getUsername() + "#" + User.users.get(i).getEmail() + "#" + User.users.get(i).getPassword() + "$");
+			for(int i = 0; i < User.userlist.size(); i++) {
+				write.write(User.userlist.get(i).getUsername() + "#" + User.userlist.get(i).getPassword() + "$");
 			}
 			write.write("!");
 			write.close();
@@ -22,7 +22,6 @@ public class BackUp {
 			String reader;
 			while(caract != '!'){
 				String username = "";
-				String email = "";
 				String pass = "";
 				for(; caract != '#'; caract = read.read()) {
 					car[0] = (char)caract;
@@ -30,18 +29,12 @@ public class BackUp {
 					username = username.concat(reader);
 				}
 				caract = read.read();
-				for(; caract != '#'; caract = read.read()) {
-					car[0] = (char)caract;
-					reader = new String(car);
-					email = email.concat(reader);
-				}
-				caract = read.read();
 				for(; caract != '$'; caract = read.read()) {
 					car[0] = (char)caract;
 					reader = new String(car);
 					pass = pass.concat(reader);
 				}
-				User newuser = new User(username, email, pass, false);
+				User newuser = new User(username, pass, false);
 				caract = read.read();
 			}
 		} catch (Exception e) {
@@ -104,9 +97,43 @@ public class BackUp {
 			String reader;
 			while (caract != '!') {
 				String productname = "";
+				String categoryid = "";
+				String stock = "";
+				String price = "";
+				for(;caract != '#'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					productname = productname.concat(reader);
+				}
+				caract = read.read();
+				for(;caract != '#'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					categoryid = categoryid.concat(reader);
+				}
+				caract = read.read();
+				for(;caract != '#'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					stock = stock.concat(reader);
+				}
+				caract = read.read();
+				for(;caract != '$'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					price = price.concat(reader);
+				}
+				Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price));
+				caract = read.read();
 			}
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the product list.");
 		}
+	}
+	
+	static void rebootAll() {
+		rebootCategoryList();
+		rebootProductList();
+		rebootUserList();
 	}
 }

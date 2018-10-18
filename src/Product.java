@@ -29,6 +29,7 @@ public class Product {
 		}
 		if(!encontrado) {
 			Category category = new Category("Undefinedcategory(" + category_id + ")", true);
+			BackUp.updateCategoryList();
 			Category.searchCategory("Undefinedcategory(" + category_id + ")").addProduct(this);
 		}
 		BackUp.updateProductList();
