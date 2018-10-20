@@ -12,7 +12,7 @@ public class Ui {
 			System.out.println("\n1 - Show all categories.");
 			System.out.println("2 - Show products by category.");
 			System.out.println("3 - Search product.");
-			System.out.println("4-Add product to your cart.");
+			System.out.println("4 - Add product to your cart.");
 			System.out.println("5 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextInt();
@@ -180,8 +180,32 @@ public class Ui {
 		User.loggeduser = newuser;
 	}
 	
-	static void loginMenu() {
-		
+	static boolean loginMenu() {
+		boolean admin = false;
+		boolean logged = false;
+		String username;
+		String password;
+		Scanner kus = new Scanner(System.in);
+		Scanner kpa = new Scanner(System.in);
+		System.out.print("Username: ");
+		username = kus.nextLine();
+		System.out.print("Password: ");
+		password = kpa.nextLine();
+		for(int i = 0; i < User.userlist.size(); i++) {
+			if (username.equals(User.userlist.get(i).getUsername()) && password.equals(User.userlist.get(i).getPassword())) {
+				logged = true;
+				User.loggeduser = User.userlist.get(i);
+				break;
+			}
+		}
+		if(logged) {
+			admin = false;
+		} else {
+			if (username.equals("admin") && password.equals("admin")) {
+				admin = true;
+			}
+		}
+		return admin;
 	}
 	
 	static void mainMenu() {
@@ -189,17 +213,22 @@ public class Ui {
 		Scanner kop = new Scanner(System.in);
 		do {
 			System.out.println("Welcome!\n");
-			System.out.println("1-Register.");
-			System.out.println("2-Login");
-			System.out.println("3-Exit.");
+			System.out.println("1 - Register.");
+			System.out.println("2 - Login");
+			System.out.println("3 - Exit.");
 			System.out.print("_>");
 			op = kop.nextInt();
 			switch (op) {
 			case 1:
 				registerMenu();
+				userMenu();
 				break;
 			case 2:
-				loginMenu();
+				if(loginMenu()) {
+					adminMenu();
+				} else {
+					userMenu();
+				}
 				break;
 			case 3:
 				System.out.println("Good Bye!");

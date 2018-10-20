@@ -20,7 +20,7 @@ public class BackUp {
 			int caract = read.read();
 			char car[] = new char[1];
 			String reader;
-			while(caract != '!'){
+			while(caract != '!' && caract != -1){
 				String username = "";
 				String pass = "";
 				for(; caract != '#'; caract = read.read()) {
@@ -60,7 +60,7 @@ public class BackUp {
 			int caract = read.read();
 			char car[] = new char[1];
 			String reader;
-			while (caract != '!') {
+			while (caract != '!' && caract != -1) {
 				String categoryname = "";
 				for(; caract != '$'; caract = read.read()) {
 					car[0] = (char)caract;
@@ -95,7 +95,7 @@ public class BackUp {
 			int caract = read.read();
 			char car[] = new char[1];
 			String reader;
-			while (caract != '!') {
+			while (caract != '!' && caract != -1) {
 				String productname = "";
 				String categoryid = "";
 				String stock = "";
@@ -128,6 +128,48 @@ public class BackUp {
 			}
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the product list.");
+		}
+	}
+	
+	static void updateCartList() {
+		try(FileWriter write = new FileWriter("CartList.txt")) {
+			for(int i = 0; i < User.userlist.size(); i++) {
+				for(int j = 0; j < User.userlist.get(i).cart.size(); j++){
+					write.write(User.userlist.get(i).cart.get(j).getName() + "#" + User.userlist.get(i).getUsername() + "$");
+				}
+			}
+			write.write("!");
+		} catch (Exception e) {
+			System.out.println("Error while updating the cart list.");
+		}
+	}
+	
+	static void rebootCartList() {
+		try {
+			FileReader read = new FileReader("CartList.txt");
+			int caract = read.read();
+			char car[] = new char[1];
+			String reader;
+			while (caract != '!' && caract != -1) {
+				String productname = "";
+				String username = "";
+				for(; caract != '#'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					productname = productname.concat(reader);
+				}
+				caract = read.read();
+				for(; caract != '$'; caract = read.read()) {
+					car[0] = (char)caract;
+					reader = new String(car);
+					username = username.concat(reader);
+				}
+				caract = read.read();
+				User tempuser = User.searchUser(username);
+				tempuser.addProduct(Product.searchProduct(productname));
+			}
+		} catch (Exception e) {
+			System.out.println("Error while rebooting the cart list.");
 		}
 	}
 	
