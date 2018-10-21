@@ -134,13 +134,15 @@ public class BackUp {
 	static void updateCartList() {
 		try(FileWriter write = new FileWriter("CartList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
-				for(int j = 0; j < User.userlist.get(i).cart.size(); j++){
-					write.write(User.userlist.get(i).cart.get(j).getName() + "#" + User.userlist.get(i).getUsername() + "$");
+				for(int j = 0; j < User.userlist.get(i).cartlist.size(); j++){
+					if (User.userlist.get(i).cartlist.get(j) != null) {
+						write.write(User.userlist.get(i).cartlist.get(j).getName() + "#" + User.userlist.get(i).getUsername() + "$");
+					}
 				}
 			}
 			write.write("!");
 		} catch (Exception e) {
-			System.out.println("Error while updating the cart list.");
+			System.out.println("Error while updating the cart list, the file CartList.txt is not found, this will be created automatically later.");
 		}
 	}
 	
@@ -166,16 +168,17 @@ public class BackUp {
 				}
 				caract = read.read();
 				User tempuser = User.searchUser(username);
-				tempuser.addProduct(Product.searchProduct(productname));
+				tempuser.addProduct(Category.searchProduct(productname));
 			}
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the cart list.");
 		}
 	}
 	
-	static void rebootAll() {
+	static void rebootAll() {		
+		rebootUserList();
 		rebootCategoryList();
 		rebootProductList();
-		rebootUserList();
+		rebootCartList();
 	}
 }

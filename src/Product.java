@@ -46,8 +46,15 @@ public class Product {
 		boolean find = false;
 		for(int i = 0; i < Category.categorylist.size(); i++) {
 			for(int j = 0; j < Category.categorylist.get(i).productlist.size(); j++){
-				if(Category.categorylist.get(i).productlist.get(j).getId() == id) {
+				if (Category.categorylist.get(i).productlist.get(j).getId() == id) {
 					find = true;
+					for(int k = 0; k < User.userlist.size(); k++) {
+						for(int l = 0; l < User.userlist.get(k).cartlist.size(); l++) {
+							if (User.userlist.get(k).cartlist.get(l).getName().equals(Category.categorylist.get(i).productlist.get(j).getName())) {
+								User.userlist.get(k).cartlist.remove(l);
+							}
+						}
+					}
 					Category.categorylist.get(i).productlist.remove(j);
 					break;
 				}
@@ -56,6 +63,7 @@ public class Product {
 		if(find) {
 			System.out.println("The product has been removed.");
 			BackUp.updateProductList();
+			BackUp.updateCartList();
 		} else {
 			System.out.println("Error, product not found.");
 		}

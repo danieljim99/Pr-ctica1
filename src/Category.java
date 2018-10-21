@@ -3,6 +3,7 @@ import java.util.List;
 public class Category {
 	String name;
 	int id;
+	static int cont = 1;
 	static List<Category> categorylist = new ArrayList<Category>();
 	List<Product> productlist = new ArrayList<Product>();
 	
@@ -13,7 +14,7 @@ public class Category {
 	
 	Category(String name, boolean update){
 		this.name = name;
-		this.id = categorylist.size() + 1;
+		this.id = cont++;
 		categorylist.add(this);
 		if(update) {
 			BackUp.updateCategoryList();
@@ -28,6 +29,10 @@ public class Category {
 		this.name = name;
 	}
 	
+	void setId(int id) {
+		this.id = id;
+	}
+	
 	int getId() {
 		return id;
 	}
@@ -38,19 +43,27 @@ public class Category {
 	}
 	
 	static void printCategories() {
-		System.out.print("Categories: " + categorylist.get(0).getName() + "(ID:0)");
-		for(int i = 1; i < categorylist.size(); i++) {
-			System.out.print(", " + categorylist.get(i).getName() + "(ID:" + i + ")");
+		if (categorylist.size() > 0) {
+			System.out.print("Categories: " + categorylist.get(0).getName());
+			for(int i = 1; i < categorylist.size(); i++) {
+				System.out.print(", " + categorylist.get(i).getName());
+			}
+			System.out.println(".");
+		} else {
+			System.out.println("There are no categories yet.");
 		}
-		System.out.println(".");
 	}
 	
 	void printProducts() {
-		System.out.print("Products of " + this.getName() + ": " + productlist.get(0).getName());
-		for(int i = 1; i < productlist.size(); i++) {
-			System.out.print(", " + productlist.get(i).getName());
+		if (productlist.size() > 0) {
+			System.out.print("Products of " + this.getName() + ": " + productlist.get(0).getName());
+			for(int i = 1; i < productlist.size(); i++) {
+				System.out.print(", " + productlist.get(i).getName());
+			}
+			System.out.println(".");
+		} else {
+			System.out.println("There are no products in this category yet.");
 		}
-		System.out.println(".");
 	}
 	static Category searchCategory(String name) {
 		Category searched = new Category();
@@ -91,16 +104,18 @@ public class Category {
 			System.out.println("The category has been removed.");
 			BackUp.updateCategoryList();
 			BackUp.updateProductList();
+			BackUp.updateCartList();
 		} else {
 			System.out.println("Error, category not found.");
 		}
 	}
 	static void storageTree() {
 		if(categorylist.size() == 0) {
-			System.out.println("There are no categories to show");
+			System.out.println("There are no data to show");
 		} else {
 			System.out.println("Showing the storage tree:\n");
 			for(int i = 0; i < categorylist.size(); i++) {
+				
 				System.out.println(categorylist.get(i).getName() + "(ID:" + categorylist.get(i).getId() + "):");
 				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
 					System.out.println("\t" + categorylist.get(i).productlist.get(j).getName() + "(ID:" + categorylist.get(i).productlist.get(j).getId() + ")");

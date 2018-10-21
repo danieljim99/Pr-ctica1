@@ -13,7 +13,8 @@ public class Ui {
 			System.out.println("2 - Show products by category.");
 			System.out.println("3 - Search product.");
 			System.out.println("4 - Add product to your cart.");
-			System.out.println("5 - Exit.");
+			System.out.println("5 - Show your cart.");
+			System.out.println("6 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextInt();
 			switch(op) {
@@ -51,13 +52,17 @@ public class Ui {
 				}
 				break;
 			case 5:
+				User.loggeduser.showCart();
+				break;
+			case 6:
 				System.out.println("Shutting down the application");
+				User.loggeduser = null;
 				break;
 			default:
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
 			
-		} while(op != 5);
+		} while(op != 6);
 	}
 	static void adminMenu() {
 		int op = 0;
@@ -136,7 +141,7 @@ public class Ui {
 	static String hash(String password) {
 		char crypted_pass [] = password.toCharArray();
 		for(int i = 0; i < password.length(); i++) {
-			crypted_pass[i] = (char) ((crypted_pass[i] + i * i + 2) % 256);
+			crypted_pass[i] = (char) ((crypted_pass[i] + i * i + 2) % 25 + 65);
 		}
 		String cryp = new String (crypted_pass);
 		return cryp;
@@ -153,7 +158,7 @@ public class Ui {
 		do {
 			checkusername = false;
 			checkpassword = false;
-			checkequals = false;
+			checkequals = true;
 			System.out.print("Username: ");
 			username = kus.nextLine();
 			System.out.print("Password: ");
@@ -163,16 +168,16 @@ public class Ui {
 			} else {
 				System.out.println("The username must have at least 8 characters.");
 			}
-			if (password.length() >= 8){
+			if (password.length() >= 8) {
 				checkpassword = true;
 			} else {
 				System.out.println("The password must have at least 8 characteres.");
 			}
 			for(int i = 0; i < User.userlist.size(); i++) {
-				if (!username.equals(User.userlist.get(i).getUsername())) {
-					checkequals = true;
-				} else {
+				if (username.equals(User.userlist.get(i).getUsername()) || username.equals("admin")) {
 					System.out.println("There is already an user with that username.");
+					checkequals = false;
+					break;
 				}
 			}
 		} while(!checkusername || !checkpassword || !checkequals);
@@ -192,7 +197,7 @@ public class Ui {
 		System.out.print("Password: ");
 		password = kpa.nextLine();
 		for(int i = 0; i < User.userlist.size(); i++) {
-			if (username.equals(User.userlist.get(i).getUsername()) && password.equals(User.userlist.get(i).getPassword())) {
+			if (username.equals(User.userlist.get(i).getUsername()) && hash(password).equals(User.userlist.get(i).getPassword())) {
 				logged = true;
 				User.loggeduser = User.userlist.get(i);
 				break;
@@ -211,12 +216,12 @@ public class Ui {
 	static void mainMenu() {
 		int op = 0;
 		Scanner kop = new Scanner(System.in);
+		System.out.println("Welcome!\n");
 		do {
-			System.out.println("Welcome!\n");
-			System.out.println("1 - Register.");
+			System.out.println("\n1 - Register.");
 			System.out.println("2 - Login");
 			System.out.println("3 - Exit.");
-			System.out.print("_>");
+			System.out.print("_> ");
 			op = kop.nextInt();
 			switch (op) {
 			case 1:
@@ -227,7 +232,11 @@ public class Ui {
 				if(loginMenu()) {
 					adminMenu();
 				} else {
-					userMenu();
+					if (User.loggeduser != null) {
+						userMenu();
+					} else {
+						System.out.println("The introduced username or password are incorrect.");
+					}
 				}
 				break;
 			case 3:
