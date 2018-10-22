@@ -50,7 +50,7 @@ public class Ui {
 				if(pro.getName() == null) {
 					System.out.println("Error, product not found.");
 				} else {
-					User.loggeduser.addProductCart(pro.getName());
+					User.loggeduser.addProductCart(pro.getName(), true);
 				}
 				break;
 			case "5":

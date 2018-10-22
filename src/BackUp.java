@@ -36,7 +36,13 @@ public class BackUp {
 					reader = new String(car);
 					pass = pass.concat(reader);
 				}
-				User newuser = new User(username, pass, false);
+				if (User.userlist.size() == 0) {
+					User newuser = new User(username, pass, false);
+				} else {
+					if (!username.equals(User.searchUser(username).getUsername())) {
+						User newuser = new User(username, pass, false);
+					}
+				}
 				caract = read.read();
 			}
 			read.close();
@@ -70,7 +76,13 @@ public class BackUp {
 					reader = new String(car);
 					categoryname = categoryname.concat(reader);
 				}
-				Category newcategory = new Category(categoryname, false);
+				if (Category.categorylist.size() == 0) {
+					Category newcategory = new Category(categoryname, false);
+				} else {
+					if (!categoryname.equals(Category.searchCategory(categoryname).getName())) {
+						Category newcategory = new Category(categoryname, false);
+					}
+				}
 				caract = read.read();
 			}
 			read.close();
@@ -127,7 +139,9 @@ public class BackUp {
 					reader = new String(car);
 					price = price.concat(reader);
 				}
-				Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price), false);
+				if (!productname.equals(Category.searchProduct(productname).getName())){
+					Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price), false);
+				}
 				caract = read.read();
 			}
 			read.close();
@@ -177,7 +191,7 @@ public class BackUp {
 				if (User.loggeduser != null) {
 					Product tempproduct = Category.searchProduct(productname);
 					if (tempproduct.getName() != null) {
-						User.loggeduser.addProductCart(tempproduct.getName());
+						User.loggeduser.addProductCart(tempproduct.getName(), false);
 					}
 				}
 				User.loggeduser = null;

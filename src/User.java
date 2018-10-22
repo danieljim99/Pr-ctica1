@@ -20,7 +20,7 @@ public class User {
 		}
 	}
 	
-	void addProductCart(String product) {
+	void addProductCart(String product, boolean update) {
 		boolean found = false;
 		if(Category.searchProduct(product).stock == 0) {
 			System.out.println("Error, the product is out of stock");
@@ -34,9 +34,11 @@ public class User {
 			}
 			if (!found) {
 				loggeduser.cartlist.add(product);
-				Category.searchProduct(product).removeStock();
-				BackUp.updateProductList();
-				BackUp.updateCartList();
+				if (update) {
+					Category.searchProduct(product).removeStock();
+					BackUp.updateProductList();
+					BackUp.updateCartList();
+				}
 			}
 		}
 	}
