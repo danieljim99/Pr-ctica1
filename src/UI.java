@@ -5,7 +5,7 @@ public class Ui {
 		Scanner kcat = new Scanner(System.in);
 		Scanner kpro = new Scanner(System.in);
 		Scanner krem = new Scanner(System.in);
-		int op = 0;
+		String op = "0";
 		String select;
 		Category cat = new Category();
 		Product pro = new Product();
@@ -18,12 +18,12 @@ public class Ui {
 			System.out.println("6 - Remove a product of your cart.");
 			System.out.println("7 - Exit.");
 			System.out.print("_> ");
-			op = kop.nextInt();
+			op = kop.nextLine();
 			switch(op) {
-			case 1:
+			case "1":
 				Category.printCategories();
 				break;
-			case 2:
+			case "2":
 				System.out.print("What is the category you are looking for? ");
 				select = kcat.nextLine();
 				cat = Category.searchCategory(select);
@@ -33,7 +33,7 @@ public class Ui {
 					cat.printProducts();
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.println("What is the product you are looking for? ");
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
@@ -43,25 +43,29 @@ public class Ui {
 					pro.information();
 				}
 				break;
-			case 4:
+			case "4":
 				System.out.println("What is the product you are looking for? ");
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {
 					System.out.println("Error, product not found.");
 				} else {
-					User.loggeduser.addProduct(pro);
+					User.loggeduser.addProductCart(pro.getName());
 				}
 				break;
-			case 5:
-				User.loggeduser.showCart();
+			case "5":
+				if (User.loggeduser != null) {
+					User.loggeduser.showCart();
+				} else {
+					System.out.println("Error");
+				}
 				break;
-			case 6:
+			case "6":
 				System.out.print("What is the product you want to remove?: ");
 				select = krem.nextLine();
-				User.loggeduser.removeProduct(select);
+				User.loggeduser.removeProductCart(select);
 				break;
-			case 7:
+			case "7":
 				System.out.println("Shutting down the application");
 				User.loggeduser = null;
 				break;
@@ -69,10 +73,10 @@ public class Ui {
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
 			
-		} while(op != 7);
+		} while(!op.equals("7"));
 	}
 	static void adminMenu() {
-		int op = 0;
+		String op = "0";
 		Scanner kop = new Scanner(System.in);
 		Scanner kname = new Scanner(System.in);
 		Scanner kname2 = new Scanner(System.in);
@@ -88,13 +92,13 @@ public class Ui {
 			System.out.println("6 - Rename category.");
 			System.out.println("7 - Exit.");
 			System.out.print("_> ");
-			op = kop.nextInt();
+			op = kop.nextLine();
 			System.out.flush();
 			switch(op) {
-			case 1:
+			case "1":
 				Category.storageTree();
 				break;
-			case 2:
+			case "2":
 				System.out.print("Introduce the category name: ");
 				String name = kname.nextLine();
 				if(Category.searchCategory(name).getName() != null) {
@@ -103,7 +107,7 @@ public class Ui {
 					Category newcategory = new Category(name, true);
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.print("Introduce the product name: ");
 				name = kname.nextLine();
 				if(Category.searchProduct(name).getName() != null) {
@@ -118,32 +122,32 @@ public class Ui {
 					Product newproduct = new Product(name, id, pst, ppr, true);
 				}
 				break;
-			case 4:
+			case "4":
 				System.out.println("ATTENTION!  This option will remove a category and all its products, this cannot be undone.");
 				System.out.print("Introduce the category id you want to remove: ");
 				int id = kid.nextInt();
 				Category.removeCategory(id);
 				break;
-			case 5:
+			case "5":
 				System.out.println("ATTENTION! this option will remove a product, this cannot be undone.");
 				System.out.print("Introduce the product id you want to remove: ");
 				id = kid.nextInt();
 				Product.removeProduct(id);
 				break;
-			case 6:
+			case "6":
 				System.out.print("Introduce the name of the category you want to rename: ");
 				name = kname.nextLine();
 				System.out.print("Introduce the new name: ");
 				String newname = kname2.nextLine();
 				Category.renameCategory(name, newname);
 				break;
-			case 7:
+			case "7":
 				System.out.println("Shutting down the application.");
 				break;
 			default:
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
-		}while(op != 7);
+		}while(!op.equals("7"));
 	}
 	
 	static String hash(String password) {
@@ -222,7 +226,7 @@ public class Ui {
 	}
 	
 	static void mainMenu() {
-		int op = 0;
+		String op = "0";
 		Scanner kop = new Scanner(System.in);
 		System.out.println("Welcome!\n");
 		do {
@@ -230,13 +234,13 @@ public class Ui {
 			System.out.println("2 - Login");
 			System.out.println("3 - Exit.");
 			System.out.print("_> ");
-			op = kop.nextInt();
+			op = kop.nextLine();
 			switch (op) {
-			case 1:
+			case "1":
 				registerMenu();
 				userMenu();
 				break;
-			case 2:
+			case "2":
 				if(loginMenu()) {
 					adminMenu();
 				} else {
@@ -247,13 +251,13 @@ public class Ui {
 					}
 				}
 				break;
-			case 3:
+			case "3":
 				System.out.println("Good Bye!");
 				BackUp.updateAll();
 				break;
 			default:
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
-		} while (op != 3);
+		} while (!op.equals("3"));
 	}
 }

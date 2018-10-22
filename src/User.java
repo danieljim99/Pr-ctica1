@@ -9,7 +9,7 @@ public class User {
 	String password;
 	static User loggeduser;
 	static List<User> userlist = new ArrayList<User>();
-	List<Product> cartlist = new ArrayList<Product>();
+	List<String> cartlist = new ArrayList<String>();
 	
 	User(String username, String password, boolean update){
 		this.username = username;
@@ -20,13 +20,13 @@ public class User {
 		}
 	}
 	
-	void addProduct(Product product) {
+	void addProductCart(String product) {
 		boolean found = false;
-		if(product.stock == 0) {
+		if(Category.searchProduct(product).stock == 0) {
 			System.out.println("Error, the product is out of stock");
 		} else {
 			for(int i = 0; i < loggeduser.cartlist.size(); i++) {
-				if (product.getName().equals(loggeduser.cartlist.get(i).getName())) {
+				if (product.equals(loggeduser.cartlist.get(i))) {
 					found = true;
 					System.out.println("You have already that product in your cart.");
 					break;					
@@ -34,39 +34,39 @@ public class User {
 			}
 			if (!found) {
 				loggeduser.cartlist.add(product);
-				product.stock--;
+				Category.searchProduct(product).removeStock();
 				BackUp.updateProductList();
 				BackUp.updateCartList();
 			}
 		}
 	}
 	
-	Product searchProduct(String name) {
-		Product product = new Product();
+	int searchProductCart(String name) {
+		int p = -1;
 		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
-			if (name.equals(loggeduser.cartlist.get(i).getName())) {
-				product = loggeduser.cartlist.get(i);
+			if (name.equals(loggeduser.cartlist.get(i))) {
+				p = i;
 				break;
 			}
 		}
-		return product;
+		return p;
 	}
 	
-	void removeProduct(String name) {
+	void removeProductCart(String name) {
 		boolean found = false;
 		int p = -1;
 		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
-			if (name.equals(loggeduser.cartlist.get(i).getName())) {
+			if (name.equals(loggeduser.cartlist.get(i))) {
 				found = true;
 				p = i;
 				break;
 			}
 		}
 		if (found) {
-			Category.searchProduct(name).stock += 1;
-			cartlist.remove(p);
-			BackUp.rebootCartList();
-			BackUp.rebootProductList();
+			Category.searchProduct(name).addStock();
+			loggeduser.cartlist.remove(p);
+			BackUp.updateCartList();
+			BackUp.updateProductList();
 		} else {
 			System.out.println("Error, product not found.");
 		}
@@ -85,9 +85,9 @@ public class User {
 	
 	void showCart() {
 		if (loggeduser.cartlist.size() > 0) {
-			System.out.print("Your cart: " + loggeduser.cartlist.get(0).getName());
+			System.out.print("Your cart: " + loggeduser.cartlist.get(0));
 			for(int i = 1; i < loggeduser.cartlist.size(); i++) {
-				System.out.print(", " + loggeduser.cartlist.get(i).getName());
+				System.out.print(", " + loggeduser.cartlist.get(i));
 			}
 			System.out.println(".");
 		} else {

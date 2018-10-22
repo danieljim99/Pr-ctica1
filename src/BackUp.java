@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class BackUp {
 	static void updateUserList() {
@@ -140,7 +141,7 @@ public class BackUp {
 			for(int i = 0; i < User.userlist.size(); i++) {
 				for(int j = 0; j < User.userlist.get(i).cartlist.size(); j++){
 					if (User.userlist.get(i).cartlist.get(j) != null) {
-						write.write(User.userlist.get(i).cartlist.get(j).getName() + "#" + User.userlist.get(i).getUsername() + "$");
+						write.write(User.userlist.get(i).cartlist.get(j) + "#" + User.userlist.get(i).getUsername() + "$");
 					}
 				}
 			}
@@ -172,16 +173,17 @@ public class BackUp {
 					username = username.concat(reader);
 				}
 				caract = read.read();
-				User tempuser = User.searchUser(username);
-				if (tempuser != null) {
+				User.loggeduser = User.searchUser(username);
+				if (User.loggeduser != null) {
 					Product tempproduct = Category.searchProduct(productname);
 					if (tempproduct.getName() != null) {
-						tempuser.addProduct(tempproduct);
+						User.loggeduser.addProductCart(tempproduct.getName());
 					}
 				}
+				User.loggeduser = null;
 			}
 			read.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println("Error while rebooting the cart list, the file CartList.txt is not found, this will be created automatically later.");
 		}
 	}

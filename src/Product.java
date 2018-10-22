@@ -52,7 +52,7 @@ public class Product {
 					find = true;
 					for(int k = 0; k < User.userlist.size(); k++) {
 						for(int l = 0; l < User.userlist.get(k).cartlist.size(); l++) {
-							if (User.userlist.get(k).cartlist.get(l).getName().equals(Category.categorylist.get(i).productlist.get(j).getName())) {
+							if (User.userlist.get(k).cartlist.get(l).equals(Category.categorylist.get(i).productlist.get(j).getName())) {
 								User.userlist.get(k).cartlist.remove(l);
 							}
 						}
@@ -89,5 +89,13 @@ public class Product {
 	
 	float getPrice() {
 		return price;
+	}
+	
+	void addStock () {
+		this.stock++;
+	}
+	
+	void removeStock() {
+		this.stock--;
 	}
 }
