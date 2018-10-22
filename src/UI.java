@@ -60,7 +60,6 @@ public class Ui {
 				System.out.print("What is the product you want to remove?: ");
 				select = krem.nextLine();
 				User.loggeduser.removeProduct(select);
-				BackUp.rebootCartList();
 				break;
 			case 7:
 				System.out.println("Shutting down the application");
@@ -115,7 +114,7 @@ public class Ui {
 					int pst = kstock.nextInt();
 					System.out.print("Introduce the price of this product: ");
 					float ppr = kprize.nextFloat();
-					Product newproduct = new Product(name, id, pst, ppr);
+					Product newproduct = new Product(name, id, pst, ppr, true);
 				}
 				break;
 			case 4:
@@ -249,6 +248,7 @@ public class Ui {
 				break;
 			case 3:
 				System.out.println("Good Bye!");
+				BackUp.updateAll();
 				break;
 			default:
 				System.out.println("The introduced number is an invalid option, please introduce it again.");

@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.util.Scanner;
 public class BackUp {
 	static void updateUserList() {
-		try(FileWriter write = new FileWriter("UserList.txt")) {
+		try(FileWriter write = new FileWriter("txt\\UserList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
 				write.write(User.userlist.get(i).getUsername() + "#" + User.userlist.get(i).getPassword() + "$");
 			}
@@ -123,7 +123,7 @@ public class BackUp {
 					reader = new String(car);
 					price = price.concat(reader);
 				}
-				Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price));
+				Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price), false);
 				caract = read.read();
 			}
 		} catch (Exception e) {
@@ -180,5 +180,12 @@ public class BackUp {
 		rebootCategoryList();
 		rebootProductList();
 		rebootCartList();
+	}
+	
+	static void updateAll() {
+		updateUserList();
+		updateCategoryList();
+		updateProductList();
+		updateCartList();
 	}
 }

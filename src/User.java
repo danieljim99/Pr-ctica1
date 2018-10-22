@@ -27,14 +27,15 @@ public class User {
 			loggeduser.cartlist.add(product);
 			BackUp.updateCartList();
 			product.stock--;
+			BackUp.updateProductList();
 		}
 	}
 	
 	Product searchProduct(String name) {
 		Product product = new Product();
-		for(int i = 0; i < cartlist.size(); i++) {
-			if (name.equals(cartlist.get(i).getName())) {
-				product = cartlist.get(i);
+		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
+			if (name.equals(loggeduser.cartlist.get(i).getName())) {
+				product = loggeduser.cartlist.get(i);
 				break;
 			}
 		}
@@ -44,15 +45,18 @@ public class User {
 	void removeProduct(String name) {
 		boolean found = false;
 		int p = 0;
-		for(int i = 0; i < cartlist.size(); i++) {
-			if (name.equals(cartlist.get(i).getName())) {
+		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
+			if (name.equals(loggeduser.cartlist.get(i).getName())) {
 				found = true;
 				p = i;
 				break;
 			}
 		}
 		if (found) {
-			cartlist.remove(p);
+			loggeduser.cartlist.get(p).stock++;
+			loggeduser.cartlist.remove(p);
+			BackUp.rebootCartList();
+			BackUp.rebootProductList();
 		} else {
 			System.out.println("Error, product not found.");
 		}
@@ -70,10 +74,10 @@ public class User {
 	}
 	
 	void showCart() {
-		if (cartlist.size() > 0) {
-			System.out.print("Your cart: " + cartlist.get(0).getName());
-			for(int i = 1; i < cartlist.size(); i++) {
-				System.out.print(", " + cartlist.get(i).getName());
+		if (loggeduser.cartlist.size() > 0) {
+			System.out.print("Your cart: " + loggeduser.cartlist.get(0).getName());
+			for(int i = 1; i < loggeduser.cartlist.size(); i++) {
+				System.out.print(", " + loggeduser.cartlist.get(i).getName());
 			}
 			System.out.println(".");
 		} else {

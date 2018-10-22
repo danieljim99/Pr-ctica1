@@ -14,7 +14,7 @@ public class Product {
 		price = -1;
 	}
 	
-	Product(String name, int category_id, int stock, float price){
+	Product(String name, int category_id, int stock, float price, boolean update){
 		this.name = name;
 		this.id = ++cont_products;
 		this.category_id = category_id;
@@ -32,7 +32,9 @@ public class Product {
 			BackUp.updateCategoryList();
 			Category.searchCategory("Undefinedcategory(" + category_id + ")").addProduct(this);
 		}
-		BackUp.updateProductList();
+		if (update) {
+			BackUp.updateProductList();
+		}
 	}
 	
 	void information() {
