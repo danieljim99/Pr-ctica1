@@ -1,9 +1,10 @@
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Scanner;
 public class BackUp {
 	static void updateUserList() {
-		try(FileWriter write = new FileWriter("txt\\UserList.txt")) {
+		try(FileWriter write = new FileWriter("UserList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
 				write.write(User.userlist.get(i).getUsername() + "#" + User.userlist.get(i).getPassword() + "$");
 			}
@@ -37,6 +38,7 @@ public class BackUp {
 				User newuser = new User(username, pass, false);
 				caract = read.read();
 			}
+			read.close();
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the users list, the file UserList.txt is not found, this will be created automatically later.");
 		}
@@ -70,6 +72,7 @@ public class BackUp {
 				Category newcategory = new Category(categoryname, false);
 				caract = read.read();
 			}
+			read.close();
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the category list, the file CategoryList.txt is not found, this will be created automatically later.");
 		}
@@ -126,6 +129,7 @@ public class BackUp {
 				Product newproduct = new Product(productname,Integer.parseInt(categoryid), Integer.parseInt(stock), Float.parseFloat(price), false);
 				caract = read.read();
 			}
+			read.close();
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the product list, the file ProductList.txt is not found, this will be created automatically later");
 		}
@@ -141,13 +145,14 @@ public class BackUp {
 				}
 			}
 			write.write("!");
+			write.close();
 		} catch (Exception e) {
 			System.out.println("Error while updating the cart list.");
 		}
 	}
 	
 	static void rebootCartList() {
-		try {
+		try{
 			FileReader read = new FileReader("CartList.txt");
 			int caract = read.read();
 			char car[] = new char[1];
@@ -168,8 +173,14 @@ public class BackUp {
 				}
 				caract = read.read();
 				User tempuser = User.searchUser(username);
-				tempuser.addProduct(Category.searchProduct(productname));
+				if (tempuser != null) {
+					Product tempproduct = Category.searchProduct(productname);
+					if (tempproduct.getName() != null) {
+						tempuser.addProduct(tempproduct);
+					}
+				}
 			}
+			read.close();
 		} catch (Exception e) {
 			System.out.println("Error while rebooting the cart list, the file CartList.txt is not found, this will be created automatically later.");
 		}

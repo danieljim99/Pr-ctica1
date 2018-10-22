@@ -89,6 +89,7 @@ public class Ui {
 			System.out.println("7 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextInt();
+			System.out.flush();
 			switch(op) {
 			case 1:
 				Category.storageTree();

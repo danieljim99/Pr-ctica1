@@ -21,13 +21,23 @@ public class User {
 	}
 	
 	void addProduct(Product product) {
+		boolean found = false;
 		if(product.stock == 0) {
 			System.out.println("Error, the product is out of stock");
 		} else {
-			loggeduser.cartlist.add(product);
-			BackUp.updateCartList();
-			product.stock--;
-			BackUp.updateProductList();
+			for(int i = 0; i < loggeduser.cartlist.size(); i++) {
+				if (product.getName().equals(loggeduser.cartlist.get(i).getName())) {
+					found = true;
+					System.out.println("You have already that product in your cart.");
+					break;					
+				}
+			}
+			if (!found) {
+				loggeduser.cartlist.add(product);
+				product.stock--;
+				BackUp.updateProductList();
+				BackUp.updateCartList();
+			}
 		}
 	}
 	
@@ -44,7 +54,7 @@ public class User {
 	
 	void removeProduct(String name) {
 		boolean found = false;
-		int p = 0;
+		int p = -1;
 		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
 			if (name.equals(loggeduser.cartlist.get(i).getName())) {
 				found = true;
@@ -53,8 +63,8 @@ public class User {
 			}
 		}
 		if (found) {
-			loggeduser.cartlist.get(p).stock++;
-			loggeduser.cartlist.remove(p);
+			Category.searchProduct(name).stock += 1;
+			cartlist.remove(p);
 			BackUp.rebootCartList();
 			BackUp.rebootProductList();
 		} else {
