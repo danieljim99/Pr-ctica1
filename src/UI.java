@@ -4,6 +4,7 @@ public class Ui {
 		Scanner kop = new Scanner(System.in);
 		Scanner kcat = new Scanner(System.in);
 		Scanner kpro = new Scanner(System.in);
+		Scanner krem = new Scanner(System.in);
 		int op = 0;
 		String select;
 		Category cat = new Category();
@@ -14,7 +15,8 @@ public class Ui {
 			System.out.println("3 - Search product.");
 			System.out.println("4 - Add product to your cart.");
 			System.out.println("5 - Show your cart.");
-			System.out.println("6 - Exit.");
+			System.out.println("6 - Remove a product of your cart.");
+			System.out.println("7 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextInt();
 			switch(op) {
@@ -46,7 +48,7 @@ public class Ui {
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {
-					System.out.println("Error, product not found");
+					System.out.println("Error, product not found.");
 				} else {
 					User.loggeduser.addProduct(pro);
 				}
@@ -55,6 +57,12 @@ public class Ui {
 				User.loggeduser.showCart();
 				break;
 			case 6:
+				System.out.print("What is the product you want to remove?: ");
+				select = krem.nextLine();
+				User.loggeduser.removeProduct(select);
+				BackUp.rebootCartList();
+				break;
+			case 7:
 				System.out.println("Shutting down the application");
 				User.loggeduser = null;
 				break;
@@ -62,7 +70,7 @@ public class Ui {
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
 			
-		} while(op != 6);
+		} while(op != 7);
 	}
 	static void adminMenu() {
 		int op = 0;

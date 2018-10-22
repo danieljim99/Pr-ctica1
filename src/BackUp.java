@@ -38,7 +38,7 @@ public class BackUp {
 				caract = read.read();
 			}
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the users list.");
+			System.out.println("Error while rebooting the users list, the file UserList.txt is not found, this will be created automatically later.");
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class BackUp {
 				caract = read.read();
 			}
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the category list.");
+			System.out.println("Error while rebooting the category list, the file CategoryList.txt is not found, this will be created automatically later.");
 		}
 	}
 	
@@ -127,7 +127,7 @@ public class BackUp {
 				caract = read.read();
 			}
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the product list.");
+			System.out.println("Error while rebooting the product list, the file ProductList.txt is not found, this will be created automatically later");
 		}
 	}
 	
@@ -142,7 +142,7 @@ public class BackUp {
 			}
 			write.write("!");
 		} catch (Exception e) {
-			System.out.println("Error while updating the cart list, the file CartList.txt is not found, this will be created automatically later.");
+			System.out.println("Error while updating the cart list.");
 		}
 	}
 	
@@ -171,7 +171,7 @@ public class BackUp {
 				tempuser.addProduct(Category.searchProduct(productname));
 			}
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the cart list.");
+			System.out.println("Error while rebooting the cart list, the file CartList.txt is not found, this will be created automatically later.");
 		}
 	}
 	

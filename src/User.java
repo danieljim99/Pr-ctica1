@@ -24,9 +24,37 @@ public class User {
 		if(product.stock == 0) {
 			System.out.println("Error, the product is out of stock");
 		} else {
-			cartlist.add(product);
+			loggeduser.cartlist.add(product);
 			BackUp.updateCartList();
 			product.stock--;
+		}
+	}
+	
+	Product searchProduct(String name) {
+		Product product = new Product();
+		for(int i = 0; i < cartlist.size(); i++) {
+			if (name.equals(cartlist.get(i).getName())) {
+				product = cartlist.get(i);
+				break;
+			}
+		}
+		return product;
+	}
+	
+	void removeProduct(String name) {
+		boolean found = false;
+		int p = 0;
+		for(int i = 0; i < cartlist.size(); i++) {
+			if (name.equals(cartlist.get(i).getName())) {
+				found = true;
+				p = i;
+				break;
+			}
+		}
+		if (found) {
+			cartlist.remove(p);
+		} else {
+			System.out.println("Error, product not found.");
 		}
 	}
 	
