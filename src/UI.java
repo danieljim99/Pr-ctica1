@@ -24,7 +24,7 @@ public class Ui {
 				Category.printCategories();
 				break;
 			case "2":
-				System.out.print("What is the category you are looking for? ");
+				System.out.print("What is the category you are looking for?: ");
 				select = kcat.nextLine();
 				cat = Category.searchCategory(select);
 				if(cat.getName() == null) {
@@ -34,7 +34,7 @@ public class Ui {
 				}
 				break;
 			case "3":
-				System.out.println("What is the product you are looking for? ");
+				System.out.print("What is the product you are looking for?: ");
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {
@@ -44,7 +44,7 @@ public class Ui {
 				}
 				break;
 			case "4":
-				System.out.println("What is the product you are looking for? ");
+				System.out.print("What is the product you are looking for?: ");
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {

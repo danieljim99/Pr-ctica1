@@ -41,7 +41,7 @@ public class Product {
 		System.out.println("Name: " + this.getName());
 		System.out.println("ID: " + this.getId());
 		System.out.println("Stock: " + this.getStock());
-		System.out.println("Prize: " + this.getPrice());
+		System.out.println("Price: " + this.getPrice() + " €");
 	}
 	
 	static void removeProduct(int id) {
