@@ -41,4 +41,3 @@ disponen las listas como add(Object), remove(index) o get(index); también he ut
 comprobar o modificar atributos de los objetos. En los constructores he utilizado un boolean para indicar si el objeto que estoy creando será un
 objeto que deba permanecer guardado como por ejemplo un producto que crea el administrador, o uno que sea solo temporal para buscar otros productos,
 la diferencia entre ellos es que uno se añade al fichero de texto y el otro solo ocupa memoria mientras el programa se ejecuta hasta que se detiene.
-
