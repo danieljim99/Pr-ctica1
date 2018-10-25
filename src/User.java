@@ -1,7 +1,4 @@
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assumptions.assumingThat;
-
 import java.util.ArrayList;
 import java.util.List;
 public class User {
