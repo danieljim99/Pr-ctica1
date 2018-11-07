@@ -15,25 +15,29 @@ public class Product {
 	}
 	
 	Product(String name, int category_id, int stock, float price, boolean update){
-		this.name = name;
-		this.id = ++cont_products;
-		this.category_id = category_id;
-		this.stock = stock;
-		this.price = price;
-		boolean encontrado = false;
-		for(int i = 0; i < Category.categorylist.size(); i++) {
-			if(category_id == Category.categorylist.get(i).getId()) {
-				Category.categorylist.get(i).addProduct(this);
-				encontrado = true;
+		if (category_id != -1) {
+			this.name = name;
+			this.id = ++cont_products;
+			this.category_id = category_id;
+			this.stock = stock;
+			this.price = price;
+			boolean encontrado = false;
+			for(int i = 0; i < Category.categorylist.size(); i++) {
+				if(category_id == Category.categorylist.get(i).getId()) {
+					Category.categorylist.get(i).addProduct(this);
+					encontrado = true;
+				}
 			}
-		}
-		if(!encontrado) {
-			Category category = new Category("Undefinedcategory(" + category_id + ")", true);
-			BackUp.updateCategoryList();
-			Category.searchCategory("Undefinedcategory(" + category_id + ")").addProduct(this);
-		}
-		if (update) {
-			BackUp.updateProductList();
+			if(!encontrado) {
+				Category category = new Category("Undefinedcategory(" + category_id + ")", true);
+				BackUp.updateCategoryList();
+				Category.searchCategory("Undefinedcategory(" + category_id + ")").addProduct(this);
+			}
+			if (update) {
+				BackUp.updateProductList();
+			}
+		} else {
+			System.out.println("The category id is no valid.");
 		}
 	}
 	

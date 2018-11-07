@@ -1,5 +1,25 @@
 import java.util.Scanner;
 public class Ui {
+	static int getIntOf(String n) {
+		int i;
+		try {
+			i = Integer.parseInt(n);
+		} catch (NumberFormatException e) {
+			i = -1;
+		}
+		return i;
+	}
+	
+	static float getFloatOf(String n) {
+		float f;
+		try {
+			f = Float.parseFloat(n);
+		} catch (NumberFormatException e) {
+			f = 0;
+		}
+		return f;
+	}
+	
 	static void userMenu() {
 		Scanner kop = new Scanner(System.in);
 		Scanner kcat = new Scanner(System.in);
@@ -114,25 +134,25 @@ public class Ui {
 					System.out.println("There is already a product with that name.");
 				} else {
 					System.out.print("Introduce the category ID: ");
-					int id = kid.nextInt();
+					String id = kid.nextLine();
 					System.out.print("Introduce the number of products you are going to create: ");
-					int pst = kstock.nextInt();
+					String pst = kstock.nextLine();
 					System.out.print("Introduce the price of this product: ");
-					float ppr = kprize.nextFloat();
-					Product newproduct = new Product(name, id, pst, ppr, true);
+					String ppr = kprize.nextLine();
+					Product newproduct = new Product(name, getIntOf(id), getIntOf(pst), getFloatOf(ppr), true);
 				}
 				break;
 			case "4":
 				System.out.println("ATTENTION!  This option will remove a category and all its products, this cannot be undone.");
 				System.out.print("Introduce the category id you want to remove: ");
-				int id = kid.nextInt();
-				Category.removeCategory(id);
+				String id = kid.nextLine();
+				Category.removeCategory(getIntOf(id));
 				break;
 			case "5":
 				System.out.println("ATTENTION! this option will remove a product, this cannot be undone.");
 				System.out.print("Introduce the product id you want to remove: ");
-				id = kid.nextInt();
-				Product.removeProduct(id);
+				id = kid.nextLine();
+				Product.removeProduct(getIntOf(id));
 				break;
 			case "6":
 				System.out.print("Introduce the name of the category you want to rename: ");
