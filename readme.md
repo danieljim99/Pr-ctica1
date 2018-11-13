@@ -5,8 +5,8 @@
 - ## Categories:
 
 	The categories have a name(String) that is introduced in the constructor, and an id(int) that is automatically defined when the object category is created, this is to avoid categories
-	with the same id. The categories are all in one static list of type <Category>, this help to locate all the categories easier, for example to find one category by its name or its id.
-	Each object category has a list of type <Product>, this list will store all the products of each category. When you create a category, it is added to the static list of categories,
+	with the same id. The categories are all in one static list of type Category, this help to locate all the categories easier, for example to find one category by its name or its id.
+	Each object category has a list of type Product, this list will store all the products of each category. When you create a category, it is added to the static list of categories,
 	and if the boolean update is true, it rewrite the backup file of the categories, this is because maybe we want to make categories only for an auxiliar use and we don't want to save
 	them in the backup file.
 	
@@ -24,7 +24,7 @@
 
 	The users have a name(String) and a password(String), this elements are introduced only when we select the option "Registrer" in the main menu(Main and User interface), the program is
 	ready to take more than one user, so there is a static list of type <User> to store all the users that are in the data users backup file, and the new that would be created,
-	there is too a list of type <String> for each user, this will be like a shopping cart, to store all the products that the user want to buy. When an object user is created,
+	there is too a list of type String for each user, this will be like a shopping cart, to store all the products that the user want to buy. When an object user is created,
 	it is added to the static user list, and make an update to the user backup file only if the bollean update is true.
 	
 ---	
