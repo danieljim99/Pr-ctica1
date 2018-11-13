@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class Ui {
 	static int getIntOf(String n) {
 		int i;

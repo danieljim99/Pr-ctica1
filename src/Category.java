@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
 public class Category {
-	String name;
-	int id;
+	private String name;
+	private int id;
 	static int cont = 1;
 	static List<Category> categorylist = new ArrayList<Category>();
 	List<Product> productlist = new ArrayList<Product>();
 	
 	Category(){
-		name = null;
-		id = -1;
+		this.name = null;
+		this.id = -1;
 	}
 	
 	Category(String name, boolean update){

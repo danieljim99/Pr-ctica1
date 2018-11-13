@@ -1,9 +1,9 @@
 public class Product {
-	String name;
-	int id;
-	int category_id;
-	int stock;
-	float price;
+	private String name;
+	private int id;
+	private int category_id;
+	private int stock;
+	private float price;
 	static int cont_products = 0;
 	
 	Product(){
