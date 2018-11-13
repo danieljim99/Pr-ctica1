@@ -28,7 +28,7 @@
 	it is added to the static user list, and make an update to the user backup file only if the bollean update is true.
 	
 ---	
-- ### BackUp files:
+- ## BackUp files:
 
 	There are two types of methods to use the backup files, the first makes an update, the file is overwritten with the new information introduced, this can be any modification of 
 	the objects(products, categories or users), and the other type makes a load from the files to create again the objects saved before, this is used only at the begining of the
@@ -38,7 +38,7 @@
 	correctly.
 	
 ---
-- # Main and User Interface:
+- ## Main and User Interface:
 	
 	The user interface has all the methods that are necesary to use all the options that the program allow and the job of the main is to launch these methods and load the
 	backup files. The first part of the UI is the main menu, in this menu you can choose to registrer with a new user or to login with a user that is already created, or with
