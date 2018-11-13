@@ -1,9 +1,9 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+
 public class User {
-	String username;
-	String password;
+	private String username;
+	private String password;
 	static User loggeduser;
 	static List<User> userlist = new ArrayList<User>();
 	List<String> cartlist = new ArrayList<String>();
@@ -19,7 +19,7 @@ public class User {
 	
 	void addProductCart(String product, boolean update) {
 		boolean found = false;
-		if(Category.searchProduct(product).stock == 0) {
+		if(Category.searchProduct(product).getStock() == 0) {
 			System.out.println("Error, the product is out of stock");
 		} else {
 			for(int i = 0; i < loggeduser.cartlist.size(); i++) {
