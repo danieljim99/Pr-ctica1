@@ -1,6 +1,6 @@
 
 
-# JAVA PROJECT
+# JAVA PROJECT 
 ---
 ---
 ---
@@ -36,7 +36,7 @@
 	the objects(products, categories or users), and the other type makes a load from the files to create again the objects saved before, this is used only at the begining of the
 	program, when the main is launched, it reads the file letter by letter and when it find a different tokens it does different things. The tokens and their meaning are: 
 	the token ***"#"*** is used to separate the object attributes, ***"$"*** is used to separate the different objects and ***"!"*** is to indicate that there are no more objects in the file, 
-	for example in the user backup file: ***username1#passworencrypted1$username2#passwordencrypted2$!*** The load of the files must be done in a especific order to load the objects
+	for example in the user backup file: ***username1#passworencrypted1$username2#passwordencrypted2$!*** The load of the files must be done in a especific order to load the objects 
 	correctly.
 	
 ---
@@ -44,7 +44,7 @@
 	
 	The user interface has all the methods that are necesary to use all the options that the program allow and the job of the main is to launch these methods and load the
 	backup files. The first part of the UI is the main menu, in this menu you can choose to registrer with a new user or to login with a user that is already created, or with
-	the admin account, that is created by deffect. The idea is that if it is the fist time you run the program, is a good idea that the first thing you do is login with
+	the admin account, that is created by deffect. The idea is that if it's the first time you run the program, is a good idea that the first thing you do is login with
 	the admin account to create some categories and products, we can do this using login and introducing ***"admin", "admin"*** , now we are in the admin menu, where we have the
 	admin options, like create categories and products, remove categories and products, rename categories and see the storage tree of all categories and products, the instructions
 	to do all this options are shown when you select an option, you can not create categories with the same name than others either products with the same name than others; 
