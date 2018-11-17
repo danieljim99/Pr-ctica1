@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ui {
+class Ui extends LanguageManager {
 	static int getIntOf(String n) {
 		int i;
 		try {
@@ -31,13 +31,14 @@ public class Ui {
 		Category cat = new Category();
 		Product pro = new Product();
 		do {
-			System.out.println("\n1 - Show all categories.");
-			System.out.println("2 - Show products by category.");
-			System.out.println("3 - Search product.");
-			System.out.println("4 - Add product to your cart.");
-			System.out.println("5 - Show your cart.");
-			System.out.println("6 - Remove a product of your cart.");
-			System.out.println("7 - Exit.");
+			System.out.print("\n");
+			System.out.println(printCategories);
+			System.out.println(printProducts);
+			System.out.println(searchProduct);
+			System.out.println(addProduct);
+			System.out.println(showCart);
+			System.out.println(removeProductCart);
+			System.out.println(exit);
 			System.out.print("_> ");
 			op = kop.nextLine();
 			switch(op) {
@@ -45,31 +46,31 @@ public class Ui {
 				Category.printCategories();
 				break;
 			case "2":
-				System.out.print("What is the category you are looking for?: ");
+				System.out.print(askCategoryName);
 				select = kcat.nextLine();
 				cat = Category.searchCategory(select);
 				if(cat.getName() == null) {
-					System.out.println("Error, category not found");
+					System.out.println(categoryError);
 				} else {
 					cat.printProducts();
 				}
 				break;
 			case "3":
-				System.out.print("What is the product you are looking for?: ");
+				System.out.print(askProductName);
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {
-					System.out.println("Error, product not found");
+					System.out.println(productError);
 				} else {
 					pro.information();
 				}
 				break;
 			case "4":
-				System.out.print("What is the product you are looking for?: ");
+				System.out.print(askProductName);
 				select = kpro.nextLine();
 				pro = Category.searchProduct(select);
 				if(pro.getName() == null) {
-					System.out.println("Error, product not found.");
+					System.out.println(productError);
 				} else {
 					User.loggeduser.addProductCart(pro.getName(), true);
 				}
@@ -82,16 +83,16 @@ public class Ui {
 				}
 				break;
 			case "6":
-				System.out.print("What is the product you want to remove?: ");
+				System.out.print(askProductRemove);
 				select = krem.nextLine();
 				User.loggeduser.removeProductCart(select);
 				break;
 			case "7":
-				System.out.println("Shutting down the application");
+				System.out.println(shutdown);
 				User.loggeduser = null;
 				break;
 			default:
-				System.out.println("The introduced number is an invalid option, please introduce it again.");
+				System.out.println(invalidOption);
 			}
 			
 		} while(!op.equals("7"));
@@ -103,15 +104,16 @@ public class Ui {
 		Scanner kname2 = new Scanner(System.in);
 		Scanner kid = new Scanner(System.in);
 		Scanner kstock = new Scanner(System.in);
-		Scanner kprize = new Scanner(System.in);
+		Scanner kprice = new Scanner(System.in);
 		do {
-			System.out.println("\n1 - Show storage tree.");
-			System.out.println("2 - Create category.");
-			System.out.println("3 - Create product.");
-			System.out.println("4 - Remove category.");
-			System.out.println("5 - Remove product.");
-			System.out.println("6 - Rename category.");
-			System.out.println("7 - Exit.");
+			System.out.print("\n");
+			System.out.println(storageTree);
+			System.out.println(createCategory);
+			System.out.println(createProduct);
+			System.out.println(removeCategory);
+			System.out.println(removeProduct);
+			System.out.println(renameCategory);
+			System.out.println(exit);
 			System.out.print("_> ");
 			op = kop.nextLine();
 			System.out.flush();
@@ -120,53 +122,53 @@ public class Ui {
 				Category.storageTree();
 				break;
 			case "2":
-				System.out.print("Introduce the category name: ");
+				System.out.print(categoryName);
 				String name = kname.nextLine();
 				if(Category.searchCategory(name).getName() != null) {
-					System.out.println("There is already a category with that name.");
+					System.out.println(categoryExists);
 				} else {
 					Category newcategory = new Category(name, true);
 				}
 				break;
 			case "3":
-				System.out.print("Introduce the product name: ");
+				System.out.print(productName);
 				name = kname.nextLine();
 				if(Category.searchProduct(name).getName() != null) {
-					System.out.println("There is already a product with that name.");
+					System.out.println(productExists);
 				} else {
-					System.out.print("Introduce the category ID: ");
+					System.out.print(categoryId);
 					String id = kid.nextLine();
-					System.out.print("Introduce the number of products you are going to create: ");
+					System.out.print(productStock);
 					String pst = kstock.nextLine();
-					System.out.print("Introduce the price of this product: ");
-					String ppr = kprize.nextLine();
+					System.out.print(productPrice);
+					String ppr = kprice.nextLine();
 					Product newproduct = new Product(name, getIntOf(id), getIntOf(pst), getFloatOf(ppr), true);
 				}
 				break;
 			case "4":
-				System.out.println("ATTENTION!  This option will remove a category and all its products, this cannot be undone.");
-				System.out.print("Introduce the category id you want to remove: ");
+				System.out.println(categoryAdvertisment);
+				System.out.print(categoryIdRemove);
 				String id = kid.nextLine();
 				Category.removeCategory(getIntOf(id));
 				break;
 			case "5":
-				System.out.println("ATTENTION! this option will remove a product, this cannot be undone.");
-				System.out.print("Introduce the product id you want to remove: ");
+				System.out.println(productAdvertisment);
+				System.out.print(productIdRemove);
 				id = kid.nextLine();
 				Product.removeProduct(getIntOf(id));
 				break;
 			case "6":
-				System.out.print("Introduce the name of the category you want to rename: ");
+				System.out.print(categoryOldName);
 				name = kname.nextLine();
-				System.out.print("Introduce the new name: ");
+				System.out.print(categoryNewName);
 				String newname = kname2.nextLine();
 				Category.renameCategory(name, newname);
 				break;
 			case "7":
-				System.out.println("Shutting down the application.");
+				System.out.println(shutdown);
 				break;
 			default:
-				System.out.println("The introduced number is an invalid option, please introduce it again.");
+				System.out.println(invalidOption);
 			}
 		}while(!op.equals("7"));
 	}
@@ -246,14 +248,38 @@ public class Ui {
 		return admin;
 	}
 	
+	static void settingsMenu() {
+		Scanner klan = new Scanner(System.in);
+		String op = "0";
+		do {
+			System.out.println("Language: ");
+			System.out.println("\t 1 - English.");
+			System.out.println("\t 2 - Español.");
+			System.out.print("_> ");
+			op = klan.nextLine();
+			switch (op) {
+			case "1":
+				LanguageManager.setLanguageEnglish();
+				break;
+			case "2":
+				LanguageManager.setLanguageSpanish();
+				break;
+			default:
+				System.out.println(invalidOption);
+			}
+		} while(!op.equals("1") && !op.equals("2"));
+	}
+	
 	static void mainMenu() {
 		String op = "0";
 		Scanner kop = new Scanner(System.in);
 		System.out.println("Welcome!\n");
 		do {
-			System.out.println("\n1 - Register.");
+			System.out.print("\n");
+			System.out.println("1 - Register.");
 			System.out.println("2 - Login");
-			System.out.println("3 - Exit.");
+			System.out.println("3 - Settings.");
+			System.out.println("4 - Exit.");
 			System.out.print("_> ");
 			op = kop.nextLine();
 			switch (op) {
@@ -273,12 +299,15 @@ public class Ui {
 				}
 				break;
 			case "3":
+				settingsMenu();
+				break;
+			case "4":
 				System.out.println("Good Bye!");
 				BackUp.updateAll();
 				break;
 			default:
 				System.out.println("The introduced number is an invalid option, please introduce it again.");
 			}
-		} while (!op.equals("3"));
+		} while (!op.equals("4"));
 	}
 }
