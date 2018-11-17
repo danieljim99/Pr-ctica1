@@ -38,7 +38,7 @@ class Ui extends LanguageManager {
 			System.out.println(addProduct);
 			System.out.println(showCart);
 			System.out.println(removeProductCart);
-			System.out.println(exit);
+			System.out.println("7 - " + exit);
 			System.out.print("_> ");
 			op = kop.nextLine();
 			switch(op) {
@@ -113,7 +113,7 @@ class Ui extends LanguageManager {
 			System.out.println(removeCategory);
 			System.out.println(removeProduct);
 			System.out.println(renameCategory);
-			System.out.println(exit);
+			System.out.println("7 - " + exit);
 			System.out.print("_> ");
 			op = kop.nextLine();
 			System.out.flush();
@@ -252,7 +252,7 @@ class Ui extends LanguageManager {
 		Scanner klan = new Scanner(System.in);
 		String op = "0";
 		do {
-			System.out.println("Language: ");
+			System.out.println(language);
 			System.out.println("\t 1 - English.");
 			System.out.println("\t 2 - Español.");
 			System.out.print("_> ");
@@ -273,13 +273,13 @@ class Ui extends LanguageManager {
 	static void mainMenu() {
 		String op = "0";
 		Scanner kop = new Scanner(System.in);
-		System.out.println("Welcome!\n");
+		System.out.println(welcome + "\n");
 		do {
 			System.out.print("\n");
-			System.out.println("1 - Register.");
-			System.out.println("2 - Login");
-			System.out.println("3 - Settings.");
-			System.out.println("4 - Exit.");
+			System.out.println(registrer);
+			System.out.println(login);
+			System.out.println(settings);
+			System.out.println("4 - " + exit);
 			System.out.print("_> ");
 			op = kop.nextLine();
 			switch (op) {
@@ -294,7 +294,7 @@ class Ui extends LanguageManager {
 					if (User.loggeduser != null) {
 						userMenu();
 					} else {
-						System.out.println("The introduced username or password are incorrect.");
+						System.out.println(loginError);
 					}
 				}
 				break;
@@ -302,11 +302,11 @@ class Ui extends LanguageManager {
 				settingsMenu();
 				break;
 			case "4":
-				System.out.println("Good Bye!");
+				System.out.println(bye);
 				BackUp.updateAll();
 				break;
 			default:
-				System.out.println("The introduced number is an invalid option, please introduce it again.");
+				System.out.println(invalidOption);
 			}
 		} while (!op.equals("4"));
 	}

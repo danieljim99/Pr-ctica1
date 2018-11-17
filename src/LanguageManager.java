@@ -36,6 +36,13 @@ public class LanguageManager {
 	static protected String productIdRemove = null;
 	static protected String categoryOldName = null;
 	static protected String categoryNewName = null;
+	static protected String language = null;
+	static protected String registrer = null;
+	static protected String login = null;
+	static protected String settings = null;
+	static protected String loginError = null;
+	static protected String bye = null;
+	static protected String welcome = null;
 	
 	static protected void setLanguageSpanish() {
 		Properties español = new Properties();
@@ -76,6 +83,13 @@ public class LanguageManager {
 			productIdRemove = español.getProperty("productIdRemove");
 			categoryOldName = español.getProperty("categoryOldName");
 			categoryNewName = español.getProperty("categoryNewName");
+			language = español.getProperty("language");
+			registrer = español.getProperty("registrer");
+			login = español.getProperty("login");
+			settings = español.getProperty("settings");
+			loginError = español.getProperty("loginError");
+			bye = español.getProperty("bye");
+			welcome = español.getProperty("welcome");
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
@@ -120,6 +134,13 @@ public class LanguageManager {
 			productIdRemove = english.getProperty("productIdRemove");
 			categoryOldName = english.getProperty("categoryOldName");
 			categoryNewName = english.getProperty("categoryNewName");
+			language = english.getProperty("language");
+			registrer = english.getProperty("registrer");
+			login = english.getProperty("login");
+			settings = english.getProperty("settings");
+			loginError = english.getProperty("loginError");
+			bye = english.getProperty("bye");
+			welcome = english.getProperty("welcome");
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
