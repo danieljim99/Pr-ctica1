@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User extends LanguageManager {
 	private String username;
 	private String password;
 	static User loggeduser;
@@ -67,7 +67,7 @@ public class User {
 			BackUp.updateCartList();
 			BackUp.updateProductList();
 		} else {
-			System.out.println("Error, product not found.");
+			System.out.println(productError);
 		}
 	}
 	

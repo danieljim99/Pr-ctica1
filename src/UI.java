@@ -194,23 +194,23 @@ class Ui extends LanguageManager {
 			checkusername = false;
 			checkpassword = false;
 			checkequals = true;
-			System.out.print("Username: ");
+			System.out.print(introduceUsername);
 			username = kus.nextLine();
-			System.out.print("Password: ");
+			System.out.print(introducePassword);
 			password = kpa.nextLine();
 			if (username.length() >= 8) {
 				checkusername = true;
 			} else {
-				System.out.println("The username must have at least 8 characters.");
+				System.out.println(usernameConstraint);
 			}
 			if (password.length() >= 8) {
 				checkpassword = true;
 			} else {
-				System.out.println("The password must have at least 8 characteres.");
+				System.out.println(passwordConstraint);
 			}
 			for(int i = 0; i < User.userlist.size(); i++) {
 				if (username.equals(User.userlist.get(i).getUsername()) || username.equals("admin")) {
-					System.out.println("There is already an user with that username.");
+					System.out.println(userExists);
 					checkequals = false;
 					break;
 				}
@@ -227,9 +227,9 @@ class Ui extends LanguageManager {
 		String password;
 		Scanner kus = new Scanner(System.in);
 		Scanner kpa = new Scanner(System.in);
-		System.out.print("Username: ");
+		System.out.print(introduceUsername);
 		username = kus.nextLine();
-		System.out.print("Password: ");
+		System.out.print(introducePassword);
 		password = kpa.nextLine();
 		for(int i = 0; i < User.userlist.size(); i++) {
 			if (username.equals(User.userlist.get(i).getUsername()) && hash(password).equals(User.userlist.get(i).getPassword())) {

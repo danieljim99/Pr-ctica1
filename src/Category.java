@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category {
+public class Category extends LanguageManager {
 	private String name;
 	private int id;
 	static int cont = 1;
@@ -107,7 +107,7 @@ public class Category {
 			BackUp.updateProductList();
 			BackUp.updateCartList();
 		} else {
-			System.out.println("Error, category not found.");
+			System.out.println(categoryError);
 		}
 	}
 	static void storageTree() {
@@ -126,10 +126,10 @@ public class Category {
 	}
 	static void renameCategory(String name, String newname) {
 		if(searchCategory(newname).getName() != null) {
-			System.out.println("There is already a category with the new name.");
+			System.out.println(categoryExists);
 		} else {
 			if(searchCategory(name).getName() == null) {
-				System.out.println("Error, category not found.");
+				System.out.println(categoryError);
 			} else {
 				searchCategory(name).setName(newname);
 				System.out.println("The name has been changed successfully.");

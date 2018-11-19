@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class BackUp {
+public class BackUp extends LanguageManager{
 	static void updateUserList() {
 		try(FileWriter write = new FileWriter("UserList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
@@ -13,7 +13,7 @@ public class BackUp {
 			write.write("!");
 			write.close();
 		} catch (Exception e) {
-			System.out.println("Error while updating the users list.");
+			System.out.println(errorUpdateUser);
 		}
 	}
 	
@@ -48,7 +48,7 @@ public class BackUp {
 			}
 			read.close();
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the users list, the file UserList.txt is not found, this will be created automatically later.");
+			System.out.println(errorRebootUser);
 		}
 	}
 	
@@ -60,7 +60,7 @@ public class BackUp {
 			write.write("!");
 			write.close();
 		} catch (Exception e) {
-			System.out.println("Error while updating the category list.");
+			System.out.println(errorUpdateCategory);
 		}
 	}
 	
@@ -88,7 +88,7 @@ public class BackUp {
 			}
 			read.close();
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the category list, the file CategoryList.txt is not found, this will be created automatically later.");
+			System.out.println(errorRebootCategory);
 		}
 	}
 	
@@ -102,7 +102,7 @@ public class BackUp {
 			write.write("!");
 			write.close();
 		} catch (Exception e) {
-			System.out.println("Error while updating the product list.");
+			System.out.println(errorUpdateProduct);
 		}
 	}
 	
@@ -147,7 +147,7 @@ public class BackUp {
 			}
 			read.close();
 		} catch (Exception e) {
-			System.out.println("Error while rebooting the product list, the file ProductList.txt is not found, this will be created automatically later");
+			System.out.println(errorRebootProduct);
 		}
 	}
 	
@@ -163,7 +163,7 @@ public class BackUp {
 			write.write("!");
 			write.close();
 		} catch (Exception e) {
-			System.out.println("Error while updating the cart list.");
+			System.out.println(errorUpdateCart);
 		}
 	}
 	
@@ -199,7 +199,7 @@ public class BackUp {
 			}
 			read.close();
 		} catch (IOException e) {
-			System.out.println("Error while rebooting the cart list, the file CartList.txt is not found, this will be created automatically later.");
+			System.out.println(errorRebootCart);
 		}
 	}
 	

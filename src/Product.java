@@ -1,4 +1,4 @@
-public class Product {
+public class Product extends LanguageManager {
 	private String name;
 	private int id;
 	private int category_id;
@@ -37,7 +37,7 @@ public class Product {
 				BackUp.updateProductList();
 			}
 		} else {
-			System.out.println("The category id is no valid.");
+			System.out.println("The category id is not valid.");
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class Product {
 			BackUp.updateProductList();
 			BackUp.updateCartList();
 		} else {
-			System.out.println("Error, product not found.");
+			System.out.println(productError);
 		}
 	}
 	
