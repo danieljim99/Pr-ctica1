@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
-class Ui extends LanguageManager {
+class Ui extends LanguageManager implements Menu {
+	private static Menu menu = null;
+	
 	static int getIntOf(String n) {
 		int i;
 		try {
@@ -19,6 +21,11 @@ class Ui extends LanguageManager {
 			f = 0;
 		}
 		return f;
+	}
+	
+	@Override
+	public void menu() {
+		adminMenu();
 	}
 	
 	static void userMenu() {
@@ -289,10 +296,12 @@ class Ui extends LanguageManager {
 				break;
 			case "2":
 				if(loginMenu()) {
-					adminMenu();
+					menu = new Ui();
+					menu.menu();
 				} else {
 					if (User.loggeduser != null) {
-						userMenu();
+						menu = new ProxyMenu();
+						menu.menu();
 					} else {
 						System.out.println(loginError);
 					}

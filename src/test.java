@@ -2,7 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class test {
-	@Test
+	/*@Test
 	void testCategory() {
 		Category cat = new Category("Category1", false);
 		assertEquals(cat.getName(), "Category1");
@@ -29,6 +29,6 @@ class test {
 		assertEquals(us.getUsername(), "danijim99");
 		assertEquals(us.getPassword(), Ui.hash("qwerty1234"));
 		assertEquals(User.searchUser("danijim99"), us);
-	}
+	}*/
 
 }
