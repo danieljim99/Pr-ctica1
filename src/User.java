@@ -20,12 +20,12 @@ public class User extends LanguageManager {
 	void addProductCart(String product, boolean update) {
 		boolean found = false;
 		if(Category.searchProduct(product).getStock() == 0) {
-			System.out.println("Error, the product is out of stock");
+			System.out.println(errorProductStock);
 		} else {
 			for(int i = 0; i < loggeduser.cartlist.size(); i++) {
 				if (product.equals(loggeduser.cartlist.get(i))) {
 					found = true;
-					System.out.println("You have already that product in your cart.");
+					System.out.println(productCart);
 					break;					
 				}
 			}
@@ -84,13 +84,13 @@ public class User extends LanguageManager {
 	
 	void showCart() {
 		if (loggeduser.cartlist.size() > 0) {
-			System.out.print("Your cart: " + loggeduser.cartlist.get(0));
+			System.out.print(yourCart + loggeduser.cartlist.get(0));
 			for(int i = 1; i < loggeduser.cartlist.size(); i++) {
 				System.out.print(", " + loggeduser.cartlist.get(i));
 			}
 			System.out.println(".");
 		} else {
-			System.out.println("There are no products in your cart.");
+			System.out.println(emptyCart);
 		}
 	}
 	

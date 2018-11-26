@@ -45,25 +45,25 @@ public class Category extends LanguageManager {
 	
 	static void printCategories() {
 		if (categorylist.size() > 0) {
-			System.out.print("Categories: " + categorylist.get(0).getName());
+			System.out.print(categories + categorylist.get(0).getName());
 			for(int i = 1; i < categorylist.size(); i++) {
 				System.out.print(", " + categorylist.get(i).getName());
 			}
 			System.out.println(".");
 		} else {
-			System.out.println("There are no categories yet.");
+			System.out.println(noCategories);
 		}
 	}
 	
 	void printProducts() {
 		if (productlist.size() > 0) {
-			System.out.print("Products of " + this.getName() + ": " + productlist.get(0).getName());
+			System.out.print(productsOf + this.getName() + ": " + productlist.get(0).getName());
 			for(int i = 1; i < productlist.size(); i++) {
 				System.out.print(", " + productlist.get(i).getName());
 			}
 			System.out.println(".");
 		} else {
-			System.out.println("There are no products in this category yet.");
+			System.out.println(noProducts);
 		}
 	}
 	static Category searchCategory(String name) {
@@ -102,7 +102,7 @@ public class Category extends LanguageManager {
 			}
 		}
 		if(find) {
-			System.out.println("The category has been removed.");
+			System.out.println(categoryRemoved);
 			BackUp.updateCategoryList();
 			BackUp.updateProductList();
 			BackUp.updateCartList();
@@ -112,9 +112,9 @@ public class Category extends LanguageManager {
 	}
 	static void storageTree() {
 		if(categorylist.size() == 0) {
-			System.out.println("There are no data to show");
+			System.out.println(noData);
 		} else {
-			System.out.println("Showing the storage tree:\n");
+			System.out.println(showStorage + "\n");
 			for(int i = 0; i < categorylist.size(); i++) {
 				
 				System.out.println(categorylist.get(i).getName() + "(ID:" + categorylist.get(i).getId() + "):");
@@ -132,7 +132,7 @@ public class Category extends LanguageManager {
 				System.out.println(categoryError);
 			} else {
 				searchCategory(name).setName(newname);
-				System.out.println("The name has been changed successfully.");
+				System.out.println(nameChanged);
 				BackUp.updateCategoryList();
 			}
 		}

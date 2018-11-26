@@ -56,6 +56,23 @@ public class LanguageManager {
 	static String errorRebootProduct = null;
 	static String errorUpdateCart = null;
 	static String errorRebootCart = null;
+	static String errorProductStock = null;
+	static String productCart = null;
+	static String yourCart = null;
+	static String emptyCart = null;
+	static String errorCategoryId = null;
+	static String name = null;
+	static String stock = null;
+	static String price = null;
+	static String productRemoved = null;
+	static String categories = null;
+	static String noCategories = null;
+	static String productsOf = null;
+	static String noProducts = null;
+	static String categoryRemoved = null;
+	static String noData = null;
+	static String showStorage = null;
+	static String nameChanged = null;
 	
 	static protected void setLanguageSpanish() {
 		Properties español = new Properties();
@@ -116,6 +133,23 @@ public class LanguageManager {
 			errorRebootProduct = español.getProperty("errorRebootProduct");
 			errorUpdateCart = español.getProperty("errorUpdateCart");
 			errorRebootCart = español.getProperty("errorRebootCart");
+			errorProductStock = español.getProperty("errorProductStock");
+			productCart = español.getProperty("productCart");
+			yourCart = español.getProperty("yourCart");
+			emptyCart = español.getProperty("emptyCart");
+			errorCategoryId = español.getProperty("errorCategoryId");
+			name = español.getProperty("name");
+			stock = español.getProperty("stock");
+			price = español.getProperty("price");
+			productRemoved = español.getProperty("productRemoved");
+			categories = español.getProperty("categories");
+			noCategories = español.getProperty("noCategories");
+			productsOf = español.getProperty("productsOf");
+			noProducts = español.getProperty("noProducts");
+			categoryRemoved = español.getProperty("categoryRemoved");
+			noData = español.getProperty("noData");
+			showStorage = español.getProperty("showStorage");
+			nameChanged = español.getProperty("nameChanged");
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
@@ -180,6 +214,23 @@ public class LanguageManager {
 			errorRebootProduct = english.getProperty("errorRebootProduct");
 			errorUpdateCart = english.getProperty("errorUpdateCart");
 			errorRebootCart = english.getProperty("errorRebootCart");
+			errorProductStock = english.getProperty("errorProductStock");
+			productCart = english.getProperty("productCart");
+			yourCart = english.getProperty("yourCart");
+			emptyCart = english.getProperty("emptyCart");
+			errorCategoryId = english.getProperty("errorCategoryId");
+			name = english.getProperty("name");
+			stock = english.getProperty("stock");
+			price = english.getProperty("price");
+			productRemoved = english.getProperty("productRemoved");
+			categories = english.getProperty("categories");
+			noCategories = english.getProperty("noCategories");
+			productsOf = english.getProperty("productsOf");
+			noProducts = english.getProperty("noProducts");
+			categoryRemoved = english.getProperty("categoryRemoved");
+			noData = english.getProperty("noData");
+			showStorage = english.getProperty("showStorage");
+			nameChanged = english.getProperty("nameChanged");
 		} catch (IOException e) {
 			System.out.println("Error");
 		}

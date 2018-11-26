@@ -37,15 +37,15 @@ public class Product extends LanguageManager {
 				BackUp.updateProductList();
 			}
 		} else {
-			System.out.println("The category id is not valid.");
+			System.out.println(errorCategoryId);
 		}
 	}
 	
 	void information() {
-		System.out.println("Name: " + this.getName());
+		System.out.println(name + this.getName());
 		System.out.println("ID: " + this.getId());
-		System.out.println("Stock: " + this.getStock());
-		System.out.println("Price: " + this.getPrice() + " €");
+		System.out.println(stock + this.getStock());
+		System.out.println(price + this.getPrice() + " €");
 	}
 	
 	static void removeProduct(int id) {
@@ -67,7 +67,7 @@ public class Product extends LanguageManager {
 			}
 		}
 		if(find) {
-			System.out.println("The product has been removed.");
+			System.out.println(productRemoved);
 			BackUp.updateProductList();
 			BackUp.updateCartList();
 		} else {
