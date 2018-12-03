@@ -126,7 +126,7 @@ class Ui extends LanguageManager implements Menu {
 			System.out.flush();
 			switch(op) {
 			case "1":
-				Category.storageTree();
+				System.out.println(Category.storageTreeToString());
 				break;
 			case "2":
 				System.out.print(categoryName);

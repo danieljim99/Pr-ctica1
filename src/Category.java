@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Category extends LanguageManager {
+	
 	private String name;
 	private int id;
 	static int cont = 1;
@@ -66,6 +67,7 @@ public class Category extends LanguageManager {
 			System.out.println(noProducts);
 		}
 	}
+	
 	static Category searchCategory(String name) {
 		Category searched = new Category();
 		for(int i = 0; i < categorylist.size(); i++) {
@@ -76,6 +78,7 @@ public class Category extends LanguageManager {
 		}
 		return searched;
 	}
+	
 	static Product searchProduct(String name) {
 		Product searched = new Product();
 		for(int i = 0; i < categorylist.size(); i++) {
@@ -110,13 +113,29 @@ public class Category extends LanguageManager {
 			System.out.println(categoryError);
 		}
 	}
+	
+	static String storageTreeToString() {
+		String storageTree;
+		if (categorylist.size() == 0) {
+			storageTree = new String(noData);
+		} else {
+			storageTree = new String(showStorage + "\n");
+			for(int i = 0; i < categorylist.size(); i++) {
+				storageTree = storageTree.concat(categorylist.get(i).getName() + "(ID:" + categorylist.get(i).getId() + "):\n");
+				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
+					storageTree = storageTree.concat("\t" + categorylist.get(i).productlist.get(j).getName() + "(ID:" + categorylist.get(i).productlist.get(j).getId() + ")\n");
+				}
+			}
+		}
+		return storageTree;
+	}
+	
 	static void storageTree() {
 		if(categorylist.size() == 0) {
 			System.out.println(noData);
 		} else {
 			System.out.println(showStorage + "\n");
 			for(int i = 0; i < categorylist.size(); i++) {
-				
 				System.out.println(categorylist.get(i).getName() + "(ID:" + categorylist.get(i).getId() + "):");
 				for(int j = 0; j < categorylist.get(i).productlist.size(); j++) {
 					System.out.println("\t" + categorylist.get(i).productlist.get(j).getName() + "(ID:" + categorylist.get(i).productlist.get(j).getId() + ")");
@@ -124,6 +143,7 @@ public class Category extends LanguageManager {
 			}
 		}
 	}
+	
 	static void renameCategory(String name, String newname) {
 		if(searchCategory(newname).getName() != null) {
 			System.out.println(categoryExists);
