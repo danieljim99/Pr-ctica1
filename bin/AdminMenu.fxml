@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminMenuController">
+   <left>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <RadioButton fx:id="storageTreeButton" mnemonicParsing="false" onAction="#storageTreeButtonPressed" text="Storage Tree">
+               <toggleGroup>
+                  <ToggleGroup fx:id="AdminMenuGroup" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="createCategoryButton" mnemonicParsing="false" onAction="#createCategoryButtonPressed" text="Create category" toggleGroup="$AdminMenuGroup" />
+            <RadioButton fx:id="createProductButton" mnemonicParsing="false" onAction="#createProductButtonPressed" text="Create product" toggleGroup="$AdminMenuGroup" />
+            <RadioButton fx:id="removeCategoryButton" mnemonicParsing="false" onAction="#removeCategoryButtonPressed" text="Remove category" toggleGroup="$AdminMenuGroup" />
+            <RadioButton fx:id="removeProductButton" mnemonicParsing="false" onAction="#removeProductButtonPressed" text="Remove product" toggleGroup="$AdminMenuGroup" />
+            <RadioButton fx:id="renameCategoryButton" mnemonicParsing="false" onAction="#renameCategoryButtonPressed" text="Rename category" toggleGroup="$AdminMenuGroup" />
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnButtonPressed" text="Return">
+               <VBox.margin>
+                  <Insets left="25.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="10.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="-20.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <TextArea fx:id="storageTree" editable="false" prefHeight="0.0" prefWidth="490.0" promptText="There are no data to show" translateY="65.0" visible="false">
+               <padding>
+                  <Insets bottom="-250.0" left="40.0" right="130.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextArea>
+            <TextField fx:id="categoryId" alignment="CENTER" promptText="Cat ID" translateY="150.0" visible="false">
+               <VBox.margin>
+                  <Insets left="220.0" right="220.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="categoryName" alignment="CENTER" prefWidth="98.0" promptText="Category name" translateX="20.0" visible="false">
+               <VBox.margin>
+                  <Insets bottom="200.0" left="170.0" right="210.0" top="150.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="productName" alignment="CENTER" promptText="Product name" translateX="20.0" translateY="-285.0" visible="false">
+               <VBox.margin>
+                  <Insets left="170.0" right="210.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="productStock" alignment="CENTER" promptText="Stock" translateY="-240.0" visible="false">
+               <VBox.margin>
+                  <Insets left="220.0" right="220.0" />
+               </VBox.margin>
+            </TextField>
+            <TextField fx:id="productPrice" alignment="CENTER" promptText="Price" translateY="-230.0" visible="false">
+               <VBox.margin>
+                  <Insets left="220.0" right="220.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="errorExists" text="There is already a category with that name" textFill="#ee0e0e" translateY="-180.0" visible="false">
+               <font>
+                  <Font name="Comic Sans MS" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="productCreateButton" mnemonicParsing="false" onAction="#productCreateButtonPressed" text="createProduct" translateY="-240.0" visible="false" />
+            <Button fx:id="categoryCreateButton" alignment="CENTER" mnemonicParsing="false" onAction="#categoryCreateButtonPressed" text="Create category" translateX="-100.0" translateY="-200.0" visible="false">
+               <VBox.margin>
+                  <Insets left="200.0" top="-100.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="categoryRemoveButton" mnemonicParsing="false" onAction="#categoryRemoveButtonPressed" text="Remove category" translateY="-230.0" visible="false" />
+            <Button fx:id="productRemoveButton" mnemonicParsing="false" onAction="#productRemoveButtonPressed" text="Remove product" translateY="-300.0" visible="false" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
