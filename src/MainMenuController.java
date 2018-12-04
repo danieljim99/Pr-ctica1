@@ -32,6 +32,9 @@ public class MainMenuController {
     private Button registerButton;
 
     @FXML
+    private Label userExists;
+    
+    @FXML
     private TextField usernameRegister;
 
     @FXML
@@ -64,11 +67,13 @@ public class MainMenuController {
     	int cont = 0;
     	if(usernameLogin.getText().length() < 8) {
         	usernameLogin.setText("");
+        	usernameConstraint.setText(LanguageManager.usernameConstraint);
         	usernameConstraint.setVisible(true);
         	cont++;
     	}
     	if(passwordLogin.getText().length() < 8) {
         	passwordLogin.setText("");
+        	passwordConstraint.setText(LanguageManager.passwordConstraint);
         	passwordConstraint.setVisible(true);
         	cont++;
         }
@@ -80,6 +85,12 @@ public class MainMenuController {
 				break;
 			}
 		}
+    	if(!logged) {
+    		userExists.setText(LanguageManager.loginError);
+    		usernameLogin.setText("");
+    		passwordLogin.setText("");
+    		userExists.setVisible(true);
+    	}
     	cont = (logged) ? cont : cont + 1;
     	return cont;
     }
@@ -88,14 +99,28 @@ public class MainMenuController {
     	int cont = 0;
     	if(usernameRegister.getText().length() < 8) {
     		usernameRegister.setText("");
+    		usernameConstraint.setText(LanguageManager.usernameConstraint);
     		usernameConstraint.setVisible(true);
     		cont++;
     	}
 		if(passwordRegister.getText().length() < 8) {
     		passwordRegister.setText("");
+    		passwordConstraint.setText(LanguageManager.passwordConstraint);
     		passwordConstraint.setVisible(true);
     		cont++;
     	}
+		boolean registered = true;
+		for(int i = 0; i < User.userlist.size(); i++) {
+			if (usernameRegister.getText().equals(User.userlist.get(i).getUsername())) {
+				userExists.setText(LanguageManager.userExists);
+				userExists.setVisible(true);
+				usernameRegister.setText("");
+				passwordRegister.setText("");
+				registered = false;
+				break;
+			}
+		}
+		cont = (registered) ? cont : cont + 1;
     	return cont;
     }
     
@@ -107,15 +132,22 @@ public class MainMenuController {
     void enterButtonPressed(ActionEvent event) throws IOException {
     	usernameConstraint.setVisible(false);
     	passwordConstraint.setVisible(false);
+    	userExists.setVisible(false);
     	if (isAdmin()) {
     		GraphicInterfaceMain.manager.adminMenuStage.show();
 			GraphicInterfaceMain.manager.mainMenuStage.close();
-    	} else if(errorLogin() == 0 && usernameLogin.isVisible() && passwordLogin.isVisible()) {
-    		GraphicInterfaceMain.manager.userMenuStage.show();
-    		GraphicInterfaceMain.manager.mainMenuStage.close();
-    	} else if(errorRegister() == 0 && usernameRegister.isVisible() && passwordRegister.isVisible()) {
-    		GraphicInterfaceMain.manager.userMenuStage.show();
-    		GraphicInterfaceMain.manager.mainMenuStage.close();
+    	} else if(usernameLogin.isVisible() && passwordLogin.isVisible()) {
+    		if(errorLogin() == 0) {
+    			GraphicInterfaceMain.manager.userMenuStage.show();
+        		GraphicInterfaceMain.manager.mainMenuStage.close();
+    		}
+    	} else if(usernameRegister.isVisible() && passwordRegister.isVisible()) {
+    		if(errorRegister() == 0) {
+    			User newuser = new User(usernameRegister.getText(), Ui.hash(passwordRegister.getText()), true);
+        		User.loggeduser = newuser;
+        		GraphicInterfaceMain.manager.userMenuStage.show();
+        		GraphicInterfaceMain.manager.mainMenuStage.close();
+    		}
     	}
     }
 }
