@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -97,4 +98,17 @@
          </opaqueInsets>
       </VBox>
    </center>
+   <right>
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets left="-210.0" />
+         </BorderPane.margin>
+         <children>
+            <Button fx:id="showLogin" mnemonicParsing="false" onAction="#showLoginPressed" text="Show" translateX="110.0" translateY="139.0" visible="false" />
+            <Button fx:id="showRegister" layoutX="110.0" layoutY="296.0" mnemonicParsing="false" onAction="#showRegisterPressed" text="Show" visible="false" />
+            <TextField fx:id="passwordLoginVisible" alignment="CENTER" layoutX="-39.0" layoutY="139.0" prefWidth="410.0" promptText="Password" translateX="-260.0" visible="false" />
+            <TextField fx:id="passwordRegisterVisible" alignment="CENTER" layoutX="-29.0" layoutY="149.0" prefWidth="410.0" promptText="Password" translateX="-270.0" translateY="147.0" visible="false" />
+         </children>
+      </Pane>
+   </right>
 </BorderPane>
