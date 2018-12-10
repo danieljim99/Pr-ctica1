@@ -42,10 +42,19 @@ public class Product extends LanguageManager {
 	}
 	
 	void information() {
-		System.out.println(name + this.getName());
+		System.out.println(LanguageManager.name + this.getName());
 		System.out.println("ID: " + this.getId());
-		System.out.println(stock + this.getStock());
-		System.out.println(price + this.getPrice() + " €");
+		System.out.println(LanguageManager.stock + this.getStock());
+		System.out.println(LanguageManager.price + this.getPrice() + " €");
+	}
+	
+	String productInfo() {
+		String info = "";
+		info += LanguageManager.name + this.getName() + "\r\n";
+		info += "ID: " + this.getId() + "\r\n";
+		info += LanguageManager.stock + this.getStock() + "\r\n";
+		info += LanguageManager.price + this.getPrice() + " €";
+		return info;	
 	}
 	
 	static void removeProduct(int id) {

@@ -94,6 +94,19 @@ public class User extends LanguageManager {
 		}
 	}
 	
+	String cart() {
+		String cart = "";
+		if(loggeduser.cartlist.size() > 0) {
+			cart += yourCart;
+			for(int i = 0; i < loggeduser.cartlist.size(); i++) {
+				cart += "\r\n\t" + loggeduser.cartlist.get(i);
+			}
+		} else {
+			cart += emptyCart;
+		}
+		return cart;
+	}
+	
 	String getUsername() {
 		return username;
 	}

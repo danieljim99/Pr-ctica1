@@ -33,12 +33,12 @@ public class StageManager extends Application{
 		adminMenuStage.setTitle("Admin Menu");
 		adminMenuStage.setScene(sceneAdmin);
 		
-		/*userMenuStage = new Stage();
+		userMenuStage = new Stage();
 		URL resUser = getClass().getClassLoader().getResource("UserMenu.fxml");
 		Parent rootUser = FXMLLoader.load(resUser);
 		Scene sceneUser = new Scene(rootUser);
-		adminMenuStage.setTitle("User Menu");
-		adminMenuStage.setScene(sceneUser);
-		*/
+		userMenuStage.setTitle("User Menu");
+		userMenuStage.setScene(sceneUser);
+		
 	}
 }

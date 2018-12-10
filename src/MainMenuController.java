@@ -128,6 +128,17 @@ public class MainMenuController {
     	return (usernameLogin.getText().equals("admin") && passwordLogin.getText().equals("admin"));
     }
     
+    void setAllEmptyAndInvisible() {
+    	usernameLogin.setText("");
+    	usernameLogin.setVisible(false);
+    	passwordLogin.setText("");
+    	passwordLogin.setVisible(false);
+    	usernameRegister.setText("");
+    	usernameRegister.setVisible(false);
+    	passwordRegister.setText("");
+    	passwordRegister.setVisible(false);
+    }
+    
     @FXML
     void enterButtonPressed(ActionEvent event) throws IOException {
     	usernameConstraint.setVisible(false);
@@ -135,10 +146,12 @@ public class MainMenuController {
     	userExists.setVisible(false);
     	if (isAdmin()) {
     		GraphicInterfaceMain.manager.adminMenuStage.show();
+    		setAllEmptyAndInvisible();
 			GraphicInterfaceMain.manager.mainMenuStage.close();
     	} else if(usernameLogin.isVisible() && passwordLogin.isVisible()) {
     		if(errorLogin() == 0) {
     			GraphicInterfaceMain.manager.userMenuStage.show();
+    			setAllEmptyAndInvisible();
         		GraphicInterfaceMain.manager.mainMenuStage.close();
     		}
     	} else if(usernameRegister.isVisible() && passwordRegister.isVisible()) {
@@ -146,6 +159,7 @@ public class MainMenuController {
     			User newuser = new User(usernameRegister.getText(), Ui.hash(passwordRegister.getText()), true);
         		User.loggeduser = newuser;
         		GraphicInterfaceMain.manager.userMenuStage.show();
+        		setAllEmptyAndInvisible();
         		GraphicInterfaceMain.manager.mainMenuStage.close();
     		}
     	}
