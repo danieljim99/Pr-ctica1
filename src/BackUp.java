@@ -12,7 +12,7 @@ public class BackUp extends LanguageManager{
 			}
 			write.write("!");
 			write.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println(errorUpdateUser);
 		}
 	}
@@ -37,17 +37,18 @@ public class BackUp extends LanguageManager{
 					reader = new String(car);
 					pass = pass.concat(reader);
 				}
-				if (User.userlist.size() == 0) {
+				User newuser = new User(username, pass, false);
+				/*if (User.userlist.size() == 0) {
 					User newuser = new User(username, pass, false);
 				} else {
 					if (!username.equals(User.searchUser(username).getUsername())) {
 						User newuser = new User(username, pass, false);
 					}
-				}
+				}*/
 				caract = read.read();
 			}
 			read.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			System.out.println(errorRebootUser);
 		}
 	}
