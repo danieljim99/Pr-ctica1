@@ -49,6 +49,12 @@ public class AdminMenuController {
     private TextField productPrice;
     
     @FXML
+    private TextField oldCategoryName;
+    
+    @FXML
+    private TextField newCategoryName;
+    
+    @FXML
     private Button categoryCreateButton;
     
     @FXML 
@@ -59,6 +65,9 @@ public class AdminMenuController {
     
     @FXML
     private Button productRemoveButton;
+    
+    @FXML
+    private Button categoryRenameButton;
     
 	@FXML
 	private Button returnButton;
@@ -76,8 +85,11 @@ public class AdminMenuController {
     	productPrice.setVisible(false);
     	productCreateButton.setVisible(false);
     	categoryRemoveButton.setVisible(false);
-    	errorExists.setVisible(false);
     	productRemoveButton.setVisible(false);
+    	newCategoryName.setVisible(false);
+    	oldCategoryName.setVisible(false);
+    	categoryRenameButton.setVisible(false);
+    	errorExists.setVisible(false);
 	}
 	
 	void setAllEmpty() {
@@ -86,6 +98,8 @@ public class AdminMenuController {
 		categoryId.setText("");
 		productStock.setText("");
 		productPrice.setText("");
+		oldCategoryName.setText("");
+		newCategoryName.setText("");
 	}
 	
 	int errorCreateCategory() {
@@ -105,9 +119,6 @@ public class AdminMenuController {
 			errorExists.setText(LanguageManager.productExists);
 			errorExists.setVisible(true);
 			productName.setText("");
-			categoryId.setText("");
-			productStock.setText("");
-			productPrice.setText("");
 			cont++;
 		}
 		return cont;
@@ -116,9 +127,10 @@ public class AdminMenuController {
 	int errorRemoveCategory() {
 		int cont = 0;
 		if (!categoryName.getText().equals(Category.searchCategory(categoryName.getText()).getName())) {
-			categoryName.setText("");
 			errorExists.setText(LanguageManager.categoryError);
 			errorExists.setVisible(true);
+			categoryName.setText("");
+			cont++;
 		}
 		return cont;
 	}
@@ -126,9 +138,29 @@ public class AdminMenuController {
 	int errorRemoveProduct() {
 		int cont = 0;
 		if(!productName.getText().equals(Category.searchProduct(productName.getText()).getName())) {
-			productName.setText("");
 			errorExists.setText(LanguageManager.productError);
 			errorExists.setVisible(true);
+			productName.setText("");
+			cont++;
+		}
+		return cont;
+	}
+	
+	int errorRenameCategory() {
+		int cont = 0;
+		errorExists.setText("");
+		if(!oldCategoryName.getText().equals(Category.searchCategory(oldCategoryName.getText()).getName())) {
+			errorExists.setText(LanguageManager.categoryError);
+			errorExists.setVisible(true);
+			oldCategoryName.setText("");
+			cont++;
+		}
+		if(newCategoryName.getText().equals(Category.searchCategory(newCategoryName.getText()).getName())) {
+			String aux = errorExists.getText();
+			errorExists.setText(aux + "\r\n" + LanguageManager.categoryExists);
+			errorExists.setVisible(true);
+			newCategoryName.setText("");
+			cont++;
 		}
 		return cont;
 	}
@@ -180,6 +212,9 @@ public class AdminMenuController {
     void renameCategoryButtonPressed(ActionEvent event) {
     	setAllFalse();
     	setAllEmpty();
+    	oldCategoryName.setVisible(true);
+    	newCategoryName.setVisible(true);
+    	categoryRenameButton.setVisible(true);
     }
     
     @FXML
@@ -211,6 +246,14 @@ public class AdminMenuController {
     	errorExists.setVisible(false);
     	if(errorRemoveProduct() == 0 && !productName.getText().isEmpty()) {
     		Product.removeProduct(Category.searchProduct(productName.getText()).getId());
+    	}
+    }
+    
+    @FXML
+    void categoryRenameButtonPressed(ActionEvent event) {
+    	errorExists.setVisible(false);
+    	if(errorRenameCategory() == 0 && !oldCategoryName.getText().isEmpty() && !newCategoryName.getText().isEmpty()) {
+    		Category.renameCategory(oldCategoryName.getText(), newCategoryName.getText());
     	}
     }
     

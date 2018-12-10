@@ -101,4 +101,12 @@ public class User extends LanguageManager {
 	String getPassword() {
 		return password;
 	}
+	
+	void setUsername(String username) {
+		this.username = username;
+	}
+	
+	void setPassword(String password) {
+		this.password = password;
+	}
 }
