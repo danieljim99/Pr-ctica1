@@ -38,13 +38,6 @@ public class BackUp extends LanguageManager{
 					pass = pass.concat(reader);
 				}
 				User newuser = new User(username, pass, false);
-				/*if (User.userlist.size() == 0) {
-					User newuser = new User(username, pass, false);
-				} else {
-					if (!username.equals(User.searchUser(username).getUsername())) {
-						User newuser = new User(username, pass, false);
-					}
-				}*/
 				caract = read.read();
 			}
 			read.close();
