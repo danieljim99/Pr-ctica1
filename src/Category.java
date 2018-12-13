@@ -27,12 +27,14 @@ public class Category extends LanguageManager {
 		return name;
 	}
 	
-	void setName(String name) {
+	int setName(String name) {
 		this.name = name;
+		return 0;
 	}
 	
-	void setId(int id) {
+	int setId(int id) {
 		this.id = id;
+		return 0;
 	}
 	
 	int getId() {
@@ -44,7 +46,7 @@ public class Category extends LanguageManager {
 		BackUp.updateProductList();
 	}
 	
-	static void printCategories() {
+	static int printCategories() {
 		if (categorylist.size() > 0) {
 			System.out.print(categories + categorylist.get(0).getName());
 			for(int i = 1; i < categorylist.size(); i++) {
@@ -54,9 +56,10 @@ public class Category extends LanguageManager {
 		} else {
 			System.out.println(noCategories);
 		}
+		return 0;
 	}
 	
-	void printProducts() {
+	int printProducts() {
 		if (productlist.size() > 0) {
 			System.out.print(productsOf + this.getName() + ": " + productlist.get(0).getName());
 			for(int i = 1; i < productlist.size(); i++) {
@@ -66,6 +69,7 @@ public class Category extends LanguageManager {
 		} else {
 			System.out.println(noProducts);
 		}
+		return 0;
 	}
 	
 	static Category searchCategory(String name) {
@@ -92,7 +96,7 @@ public class Category extends LanguageManager {
 		return searched;
 	}
 	
-	static void removeCategory(int id) {
+	static int removeCategory(int id) {
 		boolean find = false;
 		for(int i = 0; i < categorylist.size(); i++) {
 			if(categorylist.get(i).getId() == id) {
@@ -105,13 +109,14 @@ public class Category extends LanguageManager {
 			}
 		}
 		if(find) {
-			System.out.println(categoryRemoved);
 			BackUp.updateCategoryList();
 			BackUp.updateProductList();
 			BackUp.updateCartList();
+			System.out.println(categoryRemoved);
 		} else {
 			System.out.println(categoryError);
 		}
+		return 0;
 	}
 	
 	static String storageTreeToString() {
@@ -130,7 +135,7 @@ public class Category extends LanguageManager {
 		return storageTree;
 	}
 	
-	static void storageTree() {
+	static int storageTree() {
 		if(categorylist.size() == 0) {
 			System.out.println(noData);
 		} else {
@@ -142,9 +147,10 @@ public class Category extends LanguageManager {
 				}
 			}
 		}
+		return 0;
 	}
 	
-	static void renameCategory(String name, String newname) {
+	static int renameCategory(String name, String newname) {
 		if(searchCategory(newname).getName() != null) {
 			System.out.println(categoryExists);
 		} else {
@@ -156,5 +162,6 @@ public class Category extends LanguageManager {
 				BackUp.updateCategoryList();
 			}
 		}
+		return 0;
 	}
 }

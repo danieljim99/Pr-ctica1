@@ -41,11 +41,12 @@ public class Product extends LanguageManager {
 		}
 	}
 	
-	void information() {
+	int information() {
 		System.out.println(LanguageManager.name + this.getName());
 		System.out.println("ID: " + this.getId());
 		System.out.println(LanguageManager.stock + this.getStock());
 		System.out.println(LanguageManager.price + this.getPrice() + " €");
+		return 0;
 	}
 	
 	String productInfo() {
@@ -57,7 +58,7 @@ public class Product extends LanguageManager {
 		return info;	
 	}
 	
-	static void removeProduct(int id) {
+	static int removeProduct(int id) {
 		boolean find = false;
 		for(int i = 0; i < Category.categorylist.size(); i++) {
 			for(int j = 0; j < Category.categorylist.get(i).productlist.size(); j++){
@@ -82,6 +83,7 @@ public class Product extends LanguageManager {
 		} else {
 			System.out.println(productError);
 		}
+		return 0;
 	}
 	
 	String getName() {
@@ -104,11 +106,13 @@ public class Product extends LanguageManager {
 		return price;
 	}
 	
-	void addStock () {
+	int addStock () {
 		this.stock++;
+		return 0;
 	}
 	
-	void removeStock() {
+	int removeStock() {
 		this.stock--;
+		return 0;
 	}
 }

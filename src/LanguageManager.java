@@ -74,7 +74,7 @@ public class LanguageManager {
 	static String showStorage = null;
 	static String nameChanged = null;
 	
-	static protected void setLanguageSpanish() {
+	static protected int setLanguageSpanish() {
 		Properties español = new Properties();
 		FileReader fich = null;
 		try {
@@ -153,9 +153,10 @@ public class LanguageManager {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
+		return 0;
 	}
 	
-	static protected void setLanguageEnglish() {
+	static protected int setLanguageEnglish() {
 		Properties english = new Properties();
 		FileReader fich = null;
 		try {
@@ -234,5 +235,6 @@ public class LanguageManager {
 		} catch (IOException e) {
 			System.out.println("Error");
 		}
+		return 0;
 	}
 }

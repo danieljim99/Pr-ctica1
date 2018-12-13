@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class BackUp extends LanguageManager{
-	static void updateUserList() {
+	static int updateUserList() {
 		try(FileWriter write = new FileWriter("UserList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
 				write.write(User.userlist.get(i).getUsername() + "#" + User.userlist.get(i).getPassword() + "$");
@@ -15,9 +15,10 @@ public class BackUp extends LanguageManager{
 		} catch (IOException e) {
 			System.out.println(errorUpdateUser);
 		}
+		return 0;
 	}
 	
-	static void rebootUserList() {
+	static int rebootUserList() {
 		try {
 			FileReader read = new FileReader("UserList.txt");
 			int caract = read.read();
@@ -44,9 +45,10 @@ public class BackUp extends LanguageManager{
 		} catch (IOException e) {
 			System.out.println(errorRebootUser);
 		}
+		return 0;
 	}
 	
-	static void updateCategoryList() {
+	static int updateCategoryList() {
 		try(FileWriter write = new FileWriter("CategoryList.txt")) {
 			for(int i = 0; i < Category.categorylist.size(); i++) {
 				write.write(Category.categorylist.get(i).getName() + "$");
@@ -56,9 +58,10 @@ public class BackUp extends LanguageManager{
 		} catch (Exception e) {
 			System.out.println(errorUpdateCategory);
 		}
+		return 0;
 	}
 	
-	static void rebootCategoryList() {
+	static int rebootCategoryList() {
 		try {
 			FileReader read = new FileReader("CategoryList.txt");
 			int caract = read.read();
@@ -84,9 +87,10 @@ public class BackUp extends LanguageManager{
 		} catch (Exception e) {
 			System.out.println(errorRebootCategory);
 		}
+		return 0;
 	}
 	
-	static void updateProductList() {
+	static int updateProductList() {
 		try(FileWriter write = new FileWriter("ProductList.txt")) {
 			for(int i = 0; i < Category.categorylist.size(); i++) {
 				for(int j = 0; j < Category.categorylist.get(i).productlist.size(); j++) {
@@ -98,9 +102,10 @@ public class BackUp extends LanguageManager{
 		} catch (Exception e) {
 			System.out.println(errorUpdateProduct);
 		}
+		return 0;
 	}
 	
-	static void rebootProductList() {
+	static int rebootProductList() {
 		try {
 			FileReader read = new FileReader("ProductList.txt");
 			int caract = read.read();
@@ -143,9 +148,10 @@ public class BackUp extends LanguageManager{
 		} catch (Exception e) {
 			System.out.println(errorRebootProduct);
 		}
+		return 0;
 	}
 	
-	static void updateCartList() {
+	static int updateCartList() {
 		try(FileWriter write = new FileWriter("CartList.txt")) {
 			for(int i = 0; i < User.userlist.size(); i++) {
 				for(int j = 0; j < User.userlist.get(i).cartlist.size(); j++){
@@ -159,9 +165,10 @@ public class BackUp extends LanguageManager{
 		} catch (Exception e) {
 			System.out.println(errorUpdateCart);
 		}
+		return 0;
 	}
 	
-	static void rebootCartList() {
+	static int rebootCartList() {
 		try{
 			FileReader read = new FileReader("CartList.txt");
 			int caract = read.read();
@@ -195,19 +202,22 @@ public class BackUp extends LanguageManager{
 		} catch (IOException e) {
 			System.out.println(errorRebootCart);
 		}
+		return 0;
 	}
 	
-	static void rebootAll() {		
+	static int rebootAll() {		
 		rebootUserList();
 		rebootCategoryList();
 		rebootProductList();
 		rebootCartList();
+		return 0;
 	}
 	
-	static void updateAll() {
+	static int updateAll() {
 		updateUserList();
 		updateCategoryList();
 		updateProductList();
 		updateCartList();
+		return 0;
 	}
 }

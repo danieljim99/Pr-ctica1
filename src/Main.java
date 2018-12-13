@@ -1,7 +1,8 @@
 public class Main {
-	public static void main(String[] args) {
+	public static int main(String[] args) {
 		LanguageManager.setLanguageEnglish();
 		BackUp.rebootAll();
 		Ui.mainMenu();
+		return 0;
 	}
 }

@@ -17,7 +17,7 @@ public class User extends LanguageManager {
 		}
 	}
 	
-	void addProductCart(String product, boolean update) {
+	int addProductCart(String product, boolean update) {
 		boolean found = false;
 		if(Category.searchProduct(product).getStock() == 0) {
 			System.out.println(errorProductStock);
@@ -38,6 +38,7 @@ public class User extends LanguageManager {
 				}
 			}
 		}
+		return 0;
 	}
 	
 	int searchProductCart(String name) {
@@ -51,7 +52,7 @@ public class User extends LanguageManager {
 		return p;
 	}
 	
-	void removeProductCart(String name) {
+	int removeProductCart(String name) {
 		boolean found = false;
 		int p = -1;
 		for(int i = 0; i < loggeduser.cartlist.size(); i++) {
@@ -69,6 +70,7 @@ public class User extends LanguageManager {
 		} else {
 			System.out.println(productError);
 		}
+		return 0;
 	}
 	
 	static User searchUser(String username) {
@@ -82,7 +84,7 @@ public class User extends LanguageManager {
 		return find;
 	}
 	
-	void showCart() {
+	int showCart() {
 		if (loggeduser.cartlist.size() > 0) {
 			System.out.print(yourCart + loggeduser.cartlist.get(0));
 			for(int i = 1; i < loggeduser.cartlist.size(); i++) {
@@ -92,6 +94,7 @@ public class User extends LanguageManager {
 		} else {
 			System.out.println(emptyCart);
 		}
+		return 0;
 	}
 	
 	String cart() {
@@ -115,11 +118,13 @@ public class User extends LanguageManager {
 		return password;
 	}
 	
-	void setUsername(String username) {
+	int setUsername(String username) {
 		this.username = username;
+		return 0;
 	}
 	
-	void setPassword(String password) {
+	int setPassword(String password) {
 		this.password = password;
+		return 0;
 	}
 }
